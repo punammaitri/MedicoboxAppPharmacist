@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_gray_bg"
-    tools:context="com.aiprous.medicobox.prescription.ThankYouActivity">
+    tools:context="com.aiprous.medicoboxpharmacist.prescription.ThankYouActivity">
 
 
     <include

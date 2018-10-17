@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.aiprous.medicobox"
+        applicationId "com.aiprous.medicoboxpharmacist"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
@@ -72,4 +72,4 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     testImplementation 'junit:junit:4.12'
 }
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'

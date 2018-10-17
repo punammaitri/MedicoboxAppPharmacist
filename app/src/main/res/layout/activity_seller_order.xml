@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/color_gray_bg"
     android:orientation="vertical"
-    tools:context="com.aiprous.medicobox.instaorder.InstaProductDetailActivity">
+    tools:context="com.aiprous.medicoboxpharmacist.instaorder.InstaProductDetailActivity">
 
     <include
         android:id="@+id/rlayout_list_toolbar"
@@ -30,7 +30,7 @@
             android:text="Latest Orders"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold" />
 
         <android.support.v7.widget.RecyclerView

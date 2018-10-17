@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/color_gray_bg"
     android:orientation="vertical"
-    tools:context="com.aiprous.medicobox.instaorder.InstaProductDetailActivity">
+    tools:context="com.aiprous.medicoboxpharmacist.instaorder.InstaProductDetailActivity">
 
 
     <include
