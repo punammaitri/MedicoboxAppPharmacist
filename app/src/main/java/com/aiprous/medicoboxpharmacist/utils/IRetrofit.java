@@ -22,8 +22,8 @@ public interface IRetrofit {
             "Accept: application/json",
             "Content-Type: application/json"
     })
-    @POST("login.php")
-    Call<JsonObject> userLogin(@Body JsonObject jsonObject);
+    @POST("token")
+    Call<JsonPrimitive> userLogin(@Body JsonObject jsonObject);
 
     //for user registration
     @Headers({

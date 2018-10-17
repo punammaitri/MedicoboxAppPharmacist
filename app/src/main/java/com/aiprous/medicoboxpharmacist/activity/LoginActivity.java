@@ -53,6 +53,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -433,20 +434,20 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         lEmail = edtMobileEmail.getText().toString().trim();
         lPass = edtPassword.getText().toString().trim();
 
-        /*if (lEmail.length() > 0 && lPass.length() > 0) {
+        if (lEmail.length() > 0 && lPass.length() > 0) {
             JsonObject jsonObject = new JsonObject();
             //Add Json Object
             jsonObject.addProperty("username", lEmail);
             jsonObject.addProperty("password", lPass);
-            //AttemptLogin(jsonObject, lEmail, lPass);
+          AttemptLogin(jsonObject, lEmail, lPass);
         } else if (lEmail.length() == 0) {
             showToast(this, getResources().getString(R.string.error_email));
         } else if (lPass.length() == 0) {
             showToast(this, getResources().getString(R.string.error_pass));
-        }*/
+        }
 
-        startActivity(new Intent(LoginActivity.this, MainActivity.class)
-                .putExtra("email", "" + lEmail));
+       /* startActivity(new Intent(LoginActivity.this, MainActivity.class)
+                .putExtra("email", "" + lEmail));*/
     }
 
     private void AttemptLogin(JsonObject jsonObject, final String lEmail, String lPass) {
@@ -458,12 +459,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         try {
             // Using the Retrofit
-            IRetrofit jsonPostService = APIService.createService(IRetrofit.class, "https://user8.itsindev.com/medibox/API/");
-            Call<JsonObject> call = jsonPostService.userLogin(jsonObject);
-            call.enqueue(new Callback<JsonObject>() {
+            IRetrofit jsonPostService = APIService.createService(IRetrofit.class, "http://user8.itsindev.com/medibox/index.php/rest/V1/integration/customer/");
+            Call<JsonPrimitive> call = jsonPostService.userLogin(jsonObject);
+            call.enqueue(new Callback<JsonPrimitive>() {
 
                 @Override
-                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                public void onResponse(Call<JsonPrimitive> call, Response<JsonPrimitive> response) {
 
                     if (response.code() == 200) {
                         //String getId = (response.body().get("id").getAsString());
@@ -483,7 +484,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 }
 
                 @Override
-                public void onFailure(Call<JsonObject> call, Throwable t) {
+                public void onFailure(Call<JsonPrimitive> call, Throwable t) {
                     Log.e("response-failure", call.toString());
                     mAlert.onShowProgressDialog(LoginActivity.this, false);
                 }

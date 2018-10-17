@@ -56,6 +56,10 @@ public class PharmacistSideMenuAdapter extends RecyclerView.Adapter<PharmacistSi
                 navItemClicked.navItemClicked(mNavTitles[holder.getAdapterPosition()], holder.getAdapterPosition());
             }
         });
+
+        if (position == 7) {
+            holder.viewForDivider.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -77,6 +81,8 @@ public class PharmacistSideMenuAdapter extends RecyclerView.Adapter<PharmacistSi
         LinearLayout llForNavItem;
         @BindView(R.id.tv_arrow)
         TextView tv_arrow;
+        @BindView(R.id.viewForDivider)
+        View viewForDivider;
         @BindView(R.id.rvSubMenuNavigation)
         RecyclerView rvSubMenuNavigation;
         public ViewHolder(@NonNull View itemView) {
