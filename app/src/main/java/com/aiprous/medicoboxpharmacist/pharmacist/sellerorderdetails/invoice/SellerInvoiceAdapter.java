@@ -39,6 +39,12 @@ public class SellerInvoiceAdapter extends RecyclerView.Adapter<SellerInvoiceAdap
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         holder.tvProductName.setText(mDataArrayList.get(position).getOrderId());
+
+        if(position==getItemCount()-1)
+        {
+            holder.view_order_item.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -49,6 +55,8 @@ public class SellerInvoiceAdapter extends RecyclerView.Adapter<SellerInvoiceAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_product_name)
         TextView tvProductName;
+        @BindView(R.id.view_order_item)
+        View view_order_item;
 
         ViewHolder(@NonNull View view) {
             super(view);

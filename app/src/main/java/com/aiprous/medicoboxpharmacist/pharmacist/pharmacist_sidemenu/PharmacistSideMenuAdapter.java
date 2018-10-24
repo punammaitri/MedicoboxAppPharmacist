@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aiprous.medicoboxpharmacist.R;
-import com.aiprous.medicoboxpharmacist.adapter.NavSubItemAdaptor;
 import com.aiprous.medicoboxpharmacist.model.NavItemClicked;
 
 import butterknife.BindView;
@@ -25,7 +24,7 @@ public class PharmacistSideMenuAdapter extends RecyclerView.Adapter<PharmacistSi
     private int mIcons[];
     private Context mContext;
     private NavItemClicked navItemClicked;
-    private NavSubItemAdaptor navSubItemAdaptor;
+
 
     public PharmacistSideMenuAdapter(Context mContext, NavItemClicked navItemClicked, String Titles[], int Icons[]) {
         this.mContext = mContext;

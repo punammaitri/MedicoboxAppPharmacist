@@ -30,7 +30,7 @@ public class NavAdaptor extends RecyclerView.Adapter<NavAdaptor.ViewHolder> {
     private int mIcons[];
     private Context mContext;
     private NavItemClicked navItemClicked;
-    private NavSubItemAdaptor navSubItemAdaptor;
+
 
     public NavAdaptor(Context mContext, NavItemClicked navItemClicked, String Titles[], int Icons[]) {
         this.mContext = mContext;
@@ -49,30 +49,6 @@ public class NavAdaptor extends RecyclerView.Adapter<NavAdaptor.ViewHolder> {
     @SuppressLint("InflateParams")
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-
-        if(position==1)
-        {
-            holder.tv_arrow.setVisibility(View.VISIBLE);
-            String title[];
-            int icon[];
-
-            title = new String[]{
-                    mContext.getResources().getString(R.string.txt_medicines),
-                    mContext.getResources().getString(R.string.txt_lab_test)};
-
-            icon = new int[]{
-                    R.drawable.capsules,
-                    R.drawable.syringe};
-
-
-            holder.rvSubMenuNavigation.setLayoutManager(new LinearLayoutManager(mContext));
-            holder.rvSubMenuNavigation.setAdapter(new NavSubItemAdaptor(mContext,this,title,icon));
-
-        }
-        else {
-            holder.tv_arrow.setVisibility(View.INVISIBLE);
-        }
-
 
 
         holder.tvForMenuItem.setText(mNavTitles[holder.getAdapterPosition()]);

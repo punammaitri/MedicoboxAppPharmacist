@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pharmacist.PharmacistSignUpActivity">
+    tools:context=".activity.ProfileActivity">
 
 
     <include
@@ -280,7 +280,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/btn_registration"
+                android:id="@+id/btn_save"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_45"
                 android:layout_alignParentBottom="true"
@@ -290,7 +290,7 @@
                 android:layout_marginBottom="@dimen/height_25"
                 android:background="@drawable/custom_btn_bg"
                 android:fontFamily="@font/open_sans_regular"
-                android:text="Register"
+                android:text="Save"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/height_16"

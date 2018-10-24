@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.aiprous.medicoboxpharmacist.R;
@@ -29,6 +30,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     @BindView(R.id.btn_set_password)
     Button btn_set_password;
     CustomProgressDialog mAlert;
+    @BindView(R.id.edt_verification_code)
+    EditText edtVerificationCode;
+    @BindView(R.id.edt_new_password)
+    EditText edtNewPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         init();
     }
+
+    ;
 
     private void init() {
         //Change status bar color
@@ -72,7 +79,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                         startActivity(new Intent(ForgotPasswordActivity.this, ForgotPasswordActivity.class));
                         finish();
                     } else if (response.code() == 404) {
-                        Toast.makeText(ForgotPasswordActivity.this, ""+response.message(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ForgotPasswordActivity.this, "" + response.message(), Toast.LENGTH_SHORT).show();
                         mAlert.onShowProgressDialog(ForgotPasswordActivity.this, false);
                     }
                 }
@@ -91,7 +98,21 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_set_password)
     public void onClickSetPassword() {
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
+        
+        String lVerificationCode=edtVerificationCode.getText().toString();
+        String lNewPassword=edtNewPassword.getText().toString();
+        
+        if(lVerificationCode.length()==0&&lNewPassword.length()==0)
+        {
+            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+        }else if(lVerificationCode.length()==0){
+            edtVerificationCode.setError("Please enter verification code");
+        }
+        else if(lNewPassword.length()==0){
+            edtNewPassword.setError("Please enter new password");
+        }else {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }
     }
 }

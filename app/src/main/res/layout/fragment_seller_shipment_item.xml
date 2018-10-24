@@ -122,6 +122,12 @@
 
         </RelativeLayout>
 
+        <View
+            android:id="@+id/view_order_item"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/height_10"
+            android:background="@color/colorlightlightGray"/>
 
     </LinearLayout>
 </LinearLayout>

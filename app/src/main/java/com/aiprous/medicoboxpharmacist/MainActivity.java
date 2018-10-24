@@ -25,14 +25,12 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.aiprous.medicoboxpharmacist.activity.CartActivity;
 import com.aiprous.medicoboxpharmacist.activity.LoginActivity;
-import com.aiprous.medicoboxpharmacist.activity.MyAccountActivity;
 import com.aiprous.medicoboxpharmacist.activity.NotificationActivity;
+import com.aiprous.medicoboxpharmacist.activity.ProfileActivity;
 import com.aiprous.medicoboxpharmacist.adapter.NavAdaptor;
 import com.aiprous.medicoboxpharmacist.application.MedicoboxApp;
 import com.aiprous.medicoboxpharmacist.deliveryboy.AddDeliveryBoyActivity;
-import com.aiprous.medicoboxpharmacist.fragment.HomeFragment;
 import com.aiprous.medicoboxpharmacist.model.NavItemClicked;
 import com.aiprous.medicoboxpharmacist.pharmacist.dashboard.DashboardFragment;
 import com.aiprous.medicoboxpharmacist.pharmacist.pharmacist_sidemenu.PharmacistSideMenuAdapter;
@@ -64,7 +62,6 @@ public class MainActivity extends AppCompatActivity
     private final String TAG = MainActivity.class.getSimpleName();
     private Unbinder unbinder;
     public static DrawerLayout drawerLayout;
-    private HomeFragment homeFragment;
     private DashboardFragment dashboardFragment;
     private ActionBarDrawerToggle mDrawerToggle;
     private Context mContext = this;
@@ -176,41 +173,6 @@ public class MainActivity extends AppCompatActivity
        /* if (!isNetworkAvailable(mContext)) {
             CustomProgressDialog.getInstance().showDialog(mContext, Constant.Network_Error, Constant.ERROR_TYPE);
             return;*/
-
-        if (flag == 1) {
-            if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.txt_home))) {
-                drawerLayout.closeDrawer(GravityCompat.START);
-                int fragCount = getSupportFragmentManager().getBackStackEntryCount();
-                if (fragCount > 0) {
-                    for (int i = 0; i < fragCount; i++) {
-                        getSupportFragmentManager().popBackStackImmediate();
-                    }
-                }
-                addFragment();
-                return;
-            } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.txt_account))) {
-                startActivity(new Intent(mContext, MyAccountActivity.class));
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return;
-            } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.txt_cart))) {
-                startActivity(new Intent(this, CartActivity.class));
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return;
-            } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.txt_settings))) {
-                //startActivity(new Intent(mContext, MyOrdersActivity.class));
-                //drawerLayout.closeDrawer(GravityCompat.START);
-                return;
-            } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.txt_notification))) {
-                startActivity(new Intent(mContext, NotificationActivity.class));
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return;
-            } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.txt_logout))) {
-                logout();
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return;
-            }
-
-        } else {
             if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_dashboard))) {
                 drawerLayout.closeDrawer(GravityCompat.START);
                 int fragCount = getSupportFragmentManager().getBackStackEntryCount();
@@ -226,7 +188,7 @@ public class MainActivity extends AppCompatActivity
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return;
             } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_profile))) {
-                //startActivity(new Intent(mContext, SellerOrderActivity.class));
+                startActivity(new Intent(mContext, ProfileActivity.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return;
             } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_products))) {
@@ -249,7 +211,7 @@ public class MainActivity extends AppCompatActivity
                 logout();
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return;
-            }
+
         }
     }
 
@@ -300,7 +262,7 @@ public class MainActivity extends AppCompatActivity
                 R.drawable.user,
                 R.drawable.cart,
                 R.drawable.bell,
-                R.drawable.settings,
+                R.drawable.plusblue,
                 R.drawable.transaction,
                 R.drawable.logout,};
 

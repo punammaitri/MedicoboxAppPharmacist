@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Date:28/09/2018"
+            android:text="Date: 28/09/2018"
             android:layout_marginTop="@dimen/height_10"/>
 
         <TextView

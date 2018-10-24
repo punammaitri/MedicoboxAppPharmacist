@@ -32,7 +32,8 @@
             app:tabIndicatorHeight="@dimen/height_3"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/colorPrimary"
-            app:tabTextColor="@color/colorblack" />
+            app:tabTextColor="@color/colorblack"
+            app:tabTextAppearance="?android:attr/textAppearanceSmall"/>
 
     </android.support.design.widget.AppBarLayout>
 

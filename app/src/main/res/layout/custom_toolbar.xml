@@ -17,7 +17,7 @@
         android:layout_height="@dimen/height_35"
         android:src="@drawable/backarrow"
         android:padding="@dimen/height_2"
-        android:layout_marginLeft="@dimen/height_20" />
+        android:layout_marginLeft="@dimen/height_15" />
 </RelativeLayout>
 
 
@@ -58,43 +58,11 @@
         android:background="@drawable/custom_btn_bg_white"
         android:layout_centerInParent="true"
         android:layout_marginLeft="@dimen/height_10"
+        android:layout_marginRight="@dimen/height_15"
         android:clickable="true"
-
         app:iconifiedByDefault="false"
         app:queryHint="Search Medicine"
         android:queryBackground="@android:color/transparent"
-        app:queryBackground="@android:color/transparent"
+        app:queryBackground="@android:color/transparent" />
 
-        />
-
-<RelativeLayout
-    android:id="@+id/rlayout_cart"
-    android:layout_width="50dp"
-    android:layout_height="match_parent"
-    android:layout_gravity="right"
-    android:layout_alignParentEnd="true"
-    android:layout_marginRight="@dimen/height_20"
-    android:layout_alignParentRight="true">
-
-    <TextView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="@dimen/height_27"
-        android:layout_marginTop="@dimen/height_4"
-        android:fontFamily="@font/open_sans_regular"
-        android:background="@drawable/border_circle"
-        android:gravity="center"
-        android:text="0"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/colorwhite" />
-
-    <TextView
-        android:id="@+id/txtCart"
-        android:layout_width="22dp"
-        android:layout_height="25dp"
-        android:layout_centerInParent="true"
-        android:background="@drawable/cart"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-   </RelativeLayout>
 </RelativeLayout>

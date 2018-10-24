@@ -28,6 +28,7 @@ import com.aiprous.medicoboxpharmacist.BuildConfig;
 import com.aiprous.medicoboxpharmacist.MainActivity;
 import com.aiprous.medicoboxpharmacist.R;
 import com.aiprous.medicoboxpharmacist.application.MedicoboxApp;
+import com.aiprous.medicoboxpharmacist.pharmacist.PharmacistSignUpActivity;
 import com.aiprous.medicoboxpharmacist.utils.APIService;
 import com.aiprous.medicoboxpharmacist.utils.BaseActivity;
 import com.aiprous.medicoboxpharmacist.utils.CustomProgressDialog;
@@ -305,7 +306,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public void printhashkey() {
         PackageInfo info;
         try {
-            info = getPackageManager().getPackageInfo("com.aiprous.medicobox", PackageManager.GET_SIGNATURES);
+            info = getPackageManager().getPackageInfo("com.aiprous.medicoboxpharmacist", PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
                 MessageDigest md;
                 md = MessageDigest.getInstance("SHA");
@@ -393,7 +394,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @OnClick(R.id.tv_sign_up_here)
     public void onCLickSignUpHere() {
         // startActivity(new Intent(this, SignUpActivity.class));
-        startActivity(new Intent(this, SignUpActivity.class));
+        startActivity(new Intent(this, PharmacistSignUpActivity.class));
         //startActivity(new Intent(this, AddDeliveryBoyActivity.class));
         finish();
     }
@@ -431,7 +432,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     @OnClick(R.id.btn_signup)
     public void onViewClicked() {
-        lEmail = edtMobileEmail.getText().toString().trim();
+
+       /* lEmail = edtMobileEmail.getText().toString().trim();
         lPass = edtPassword.getText().toString().trim();
 
         if (lEmail.length() > 0 && lPass.length() > 0) {
@@ -439,15 +441,16 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             //Add Json Object
             jsonObject.addProperty("username", lEmail);
             jsonObject.addProperty("password", lPass);
+            //call login API
           AttemptLogin(jsonObject, lEmail, lPass);
         } else if (lEmail.length() == 0) {
             showToast(this, getResources().getString(R.string.error_email));
         } else if (lPass.length() == 0) {
             showToast(this, getResources().getString(R.string.error_pass));
-        }
+        }*/
 
-       /* startActivity(new Intent(LoginActivity.this, MainActivity.class)
-                .putExtra("email", "" + lEmail));*/
+        startActivity(new Intent(LoginActivity.this, MainActivity.class)
+                .putExtra("email", "" + lEmail));
     }
 
     private void AttemptLogin(JsonObject jsonObject, final String lEmail, String lPass) {

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.aiprous.medicoboxpharmacist.R;
 import com.aiprous.medicoboxpharmacist.adapter.NotificationAdapter;
@@ -20,11 +21,12 @@ import butterknife.OnClick;
 
 public class NotificationActivity extends AppCompatActivity {
 
-    @BindView(R.id.searchview_medicine)
-    SearchView searchview_medicine;
     @BindView(R.id.rc_notification)
     RecyclerView rc_notification;
-
+    @BindView(R.id.rlayout_notification)
+    RelativeLayout rlayout_notification;
+    @BindView(R.id.searchview_medicine)
+    SearchView searchview_medicine;
     private Context mContext = this;
     ArrayList<NotificationModel> notificationArrayList = new ArrayList<>();
     private RecyclerView.LayoutManager layoutManager;
@@ -38,11 +40,14 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     private void init() {
-        searchview_medicine.setFocusable(false);
-        searchview_medicine.setVisibility(View.GONE);
         //Change status bar color
         BaseActivity baseActivity = new BaseActivity();
         baseActivity.changeStatusBarColor(this);
+
+        //visible notification icon
+        searchview_medicine.setFocusable(false);
+        searchview_medicine.setVisibility(View.GONE);
+        rlayout_notification.setVisibility(View.VISIBLE);
 
         notificationArrayList.add(new NotificationModel("New order received Order ID #133331588555566 from Shreya Saran.", "29/09/2018", "2:30pm"));
         notificationArrayList.add(new NotificationModel("Order ID #133331588555566 was cancelled by the user.", "29/09/2018", "2:30pm"));

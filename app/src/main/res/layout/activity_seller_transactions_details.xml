@@ -62,7 +62,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_regular"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Date:September 28, 2018"
+                        android:text="Date: September 28, 2018"
                         android:layout_marginTop="@dimen/height_10"/>
 
                     <LinearLayout
@@ -194,6 +194,7 @@
                             android:text="Price" />
 
                         <TextView
+                            android:id="@+id/tv_price"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
@@ -244,6 +245,7 @@
                             android:text="Total Price" />
 
                         <TextView
+                            android:id="@+id/tv_total_price"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
@@ -262,6 +264,7 @@
                         android:layout_marginTop="@dimen/height_10">
 
                         <TextView
+
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
@@ -270,6 +273,7 @@
                             android:text="Total Tax" />
 
                         <TextView
+                            android:id="@+id/tv_total_tax"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
@@ -296,6 +300,7 @@
                             android:text="Total Shipping" />
 
                         <TextView
+                            android:id="@+id/tv_total_shipping"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
@@ -321,6 +326,7 @@
                             android:text="Commission" />
 
                         <TextView
+                            android:id="@+id/tv_commission"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
@@ -346,6 +352,7 @@
                             android:text="Sub Total" />
 
                         <TextView
+                            android:id="@+id/tv_sub_total"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"

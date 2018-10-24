@@ -22,8 +22,7 @@ public class SellerOrderActivity extends AppCompatActivity {
 
     @BindView(R.id.searchview_medicine)
     SearchView searchview_medicine;
-    @BindView(R.id.rlayout_cart)
-    RelativeLayout rlayout_cart;
+
 
     RecyclerView rc_seller_list;
     ArrayList<SellerOrderActivity.ListModel> mlistModelsArray = new ArrayList<>();
@@ -43,7 +42,7 @@ public class SellerOrderActivity extends AppCompatActivity {
 
         searchview_medicine.setFocusable(false);
         searchview_medicine.setQueryHint("Search Orders");
-        rlayout_cart.setVisibility(View.GONE);
+
 
         //Change status bar color
         BaseActivity baseActivity = new BaseActivity();

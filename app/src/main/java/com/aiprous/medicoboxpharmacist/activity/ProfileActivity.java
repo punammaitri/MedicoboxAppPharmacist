@@ -1,7 +1,7 @@
-package com.aiprous.medicoboxpharmacist.pharmacist;
+package com.aiprous.medicoboxpharmacist.activity;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PharmacistSignUpActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     @BindView(R.id.searchview_medicine)
     SearchView searchview_medicine;
@@ -47,12 +47,10 @@ public class PharmacistSignUpActivity extends AppCompatActivity {
     EditText edtDurg;
     @BindView(R.id.edt_message)
     EditText edtMessage;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pharmacist_sign_up);
+        setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
         init();
     }
@@ -63,12 +61,10 @@ public class PharmacistSignUpActivity extends AppCompatActivity {
         //Change status bar color
         BaseActivity baseActivity = new BaseActivity();
         baseActivity.changeStatusBarColor(this);
-
-
     }
 
-    @OnClick(R.id.btn_registration)
-    public void onViewClicked() {
+    @OnClick(R.id.btn_save)
+    public void onSave() {
 
         String emailPattern = "[A-Za-z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -98,7 +94,7 @@ public class PharmacistSignUpActivity extends AppCompatActivity {
         }else if(lLast_name.length()==0){
             edtLastName.setError("Please enter last name");
         }else if(lContact_no_first.length()==0){
-           edtContactNoFirst.setText("Please enter contact number");
+            edtContactNoFirst.setText("Please enter contact number");
         }else if(lemail_id.length()==0){
             edtEmailId.setError("Please enter email id");
         }else if(lname_pharmacy.length()==0){
@@ -112,13 +108,13 @@ public class PharmacistSignUpActivity extends AppCompatActivity {
         }else if(lCountry.length()==0){
             edtCountry.setError("Please enter country");
         }else if(lPincode.length()==0){
-             edtPincode.setError("Please enter pincode");
+            edtPincode.setError("Please enter pincode");
         }else if(lPharmacistRegNo.length()==0){
-             edtPharmacistRegNo.setError("Please enter pharmacist registration number");
+            edtPharmacistRegNo.setError("Please enter pharmacist registration number");
         }else if(lDurg.length()==0){
-              edtDurg.setError("Please enter drug license number");
+            edtDurg.setError("Please enter drug license number");
         }else if(lmessage.length()==0){
-              edtMessage.setError("Please enter message");
+            edtMessage.setError("Please enter message");
         }else if(lContact_no_first.length()<=9){
             edtContactNoFirst.setError("Contact number should be 10 digit");
         }else if (!lemail_id.matches(emailPattern)) {
@@ -127,6 +123,10 @@ public class PharmacistSignUpActivity extends AppCompatActivity {
         else {
             //call api
         }
+    }
 
+    @OnClick(R.id.rlayout_back_button)
+    public void BackPressSProfile() {
+        finish();
     }
 }

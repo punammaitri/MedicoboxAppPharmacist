@@ -15,7 +15,7 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <application
-        android:name="com.aiprous.medicoboxpharmacist.application.MedicoboxApp"
+        android:name=".application.MedicoboxApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,7 +24,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
         <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.SplashActivity"
+            android:name=".activity.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -34,147 +34,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.SignUpActivity"
+            android:name=".activity.OTPActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.OTPActivity"
+            android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.LoginActivity"
+            android:name=".activity.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.ListActivity"
+            android:name=".activity.SetPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.ProductDescriptionActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.ForgotPasswordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.SetPasswordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.ProductDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.ProductDetailBActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.instaorder.InstaProductDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.instaorder.InstaAddNewListActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.prescription.PrescriptionBillingAddressActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.prescription.PrescriptionChooseDeliveryAddressActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.prescription.PrescriptionEditAddressActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.prescription.PrescriptionOrderSummaryActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.prescription.ThankYouActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.prescription.PrescriptionUploadActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.prescription.PrescriptionUploadOptionActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.CartActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.OrderSummaryActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.PaymentDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.EditProfileActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.MyAccountActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.NotificationActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.MyOrdersActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.CancelOrderActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.OrderDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.OrderPlacedActivity"
+            android:name=".activity.NotificationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -194,44 +79,45 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.OrderTrackingActivity"
+            android:name=".pharmacist.PharmacistSignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name="com.aiprous.medicoboxpharmacist.pharmacist.PharmacistSignUpActivity" />
-        <activity android:name="com.aiprous.medicoboxpharmacist.deliveryboy.AddDeliveryBoyActivity" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
-            android:name="com.aiprous.medicoboxpharmacist.pharmacist.sellerorder.SellerOrderActivity"
+            android:name=".deliveryboy.AddDeliveryBoyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.aiprous.medicoboxpharmacist.pharmacist.sellerorderdetails.SellerOrderDetailsActivity"
+            android:name=".pharmacist.sellerorder.SellerOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".pharmacist.sellerorderdetails.SellerOrderDetailsActivity"
             android:label="Order Details"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.aiprous.medicoboxpharmacist.pharmacist.sellertransaction.SellerTransactionActivity"
+            android:name=".pharmacist.sellertransaction.SellerTransactionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.aiprous.medicoboxpharmacist.pharmacist.sellertransaction.SellerTransactionsDetailsActivity"
+            android:name=".pharmacist.sellertransaction.SellerTransactionsDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.aiprous.medicoboxpharmacist.activity.SettingActivity"
+            android:name=".pharmacist.productlist.PharmacistProductListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
-        <activity
-            android:name="com.aiprous.medicoboxpharmacist.pharmacist.productlist.PharmacistProductListActivity"
+        <activity android:name=".activity.ProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden"/>
     </application>
 
 </manifest>

@@ -1,43 +1,35 @@
 {
   "project_info": {
-    "project_number": "933962831921",
-    "firebase_url": "https://medico-217009.firebaseio.com",
-    "project_id": "medico-217009",
-    "storage_bucket": "medico-217009.appspot.com"
+    "project_number": "1088741362479",
+    "firebase_url": "https://medicoboxpharmac-1540275063100.firebaseio.com",
+    "project_id": "medicoboxpharmac-1540275063100",
+    "storage_bucket": "medicoboxpharmac-1540275063100.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:933962831921:android:c288737cdb48caec",
+        "mobilesdk_app_id": "1:1088741362479:android:3f35a7260e5efb45",
         "android_client_info": {
-          "package_name": "com.aiprous.medicobox"
+          "package_name": "com.aiprous.medicoboxpharmacist"
         }
       },
       "oauth_client": [
         {
-          "client_id": "933962831921-eg3skg8pfu5rr0ov18hoch8tmcfsp34c.apps.googleusercontent.com",
+          "client_id": "1088741362479-iktput7eepgk14clnj5l3mgg1qb3osbj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.aiprous.medicobox",
-            "certificate_hash": "bad584a8b1952ca640a20230db64e1befa3302d2"
+            "package_name": "com.aiprous.medicoboxpharmacist",
+            "certificate_hash": "e92386ebe9881627d6ff93cfebde065abf1fb18d"
           }
         },
         {
-          "client_id": "933962831921-9spncpasheqqdu566saj82tqkmpreeks.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.aiprous.medicobox",
-            "certificate_hash": "7b4aed89a7f8413e2ee4245ca604938d9d76e7ac"
-          }
-        },
-        {
-          "client_id": "933962831921-44ltstgn3n9d3t3hhqcle3clj2qm3m33.apps.googleusercontent.com",
+          "client_id": "1088741362479-mc0svhq26eu62c66neq50g5vqpkvehf9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAVKFYmYHcnG_BSxsxUNAEc-RrOKVaIzVA"
+          "current_key": "AIzaSyCn6o-Csf7Oq68M6QDDGq97HHkvAxK5cG4"
         }
       ],
       "services": {
@@ -48,15 +40,8 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "933962831921-44ltstgn3n9d3t3hhqcle3clj2qm3m33.apps.googleusercontent.com",
+              "client_id": "1088741362479-mc0svhq26eu62c66neq50g5vqpkvehf9.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "933962831921-69lur6r05vu1hdlvqbdm18nn50epasf9.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.aiprous.MedicoBox"
-              }
             }
           ]
         },

@@ -37,6 +37,7 @@ public class PharmacistProductListAdapter extends RecyclerView.Adapter<Pharmacis
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
+        holder.tv_price.setText(mContext.getResources().getString(R.string.Rs)+"200.00");
     }
 
     @Override
