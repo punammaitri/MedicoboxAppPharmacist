@@ -21,6 +21,7 @@ android {
 
 repositories {
     mavenCentral()
+    google()
     maven {
         url 'https://maven.google.com/'
         name 'Google'
