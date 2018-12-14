@@ -9,19 +9,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.aiprous.medicoboxpharmacist.R;
-import com.aiprous.medicoboxpharmacist.utils.APIService;
 import com.aiprous.medicoboxpharmacist.utils.BaseActivity;
 import com.aiprous.medicoboxpharmacist.utils.CustomProgressDialog;
-import com.aiprous.medicoboxpharmacist.utils.IRetrofit;
+import com.google.android.gms.common.api.Response;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
 
 import static com.aiprous.medicoboxpharmacist.utils.BaseActivity.isNetworkAvailable;
 import static com.aiprous.medicoboxpharmacist.utils.BaseActivity.showToast;
@@ -64,48 +61,10 @@ public class SetPasswordActivity extends AppCompatActivity {
             //Add Json Object
             jsonObject.addProperty("customerEmail", lEmail);
             jsonObject.addProperty("websiteId", 1);
-            AttemptSetPassword(jsonObject, lEmail, 1);
+            //AttemptSetPassword(jsonObject, lEmail, 1);
         } else if (lEmail.length() == 0) {
             showToast(this, getResources().getString(R.string.error_email));
         }
 
-    }
-
-    private void AttemptSetPassword(JsonObject jsonObject, String lEmail, int i) {
-
-        if (!isNetworkAvailable(this)) {
-            Toast.makeText(this, "Check Your Network", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        mAlert.onShowProgressDialog(this, true);
-
-        try {
-            // Using the Retrofit
-            IRetrofit jsonPostService = APIService.createService(IRetrofit.class, "http://user8.itsindev.com/medibox/index.php/rest/V1/customers/");
-            Call<JsonPrimitive> call = jsonPostService.emailAvailable(jsonObject);
-            call.enqueue(new Callback<JsonPrimitive>() {
-
-                @Override
-                public void onResponse(Call<JsonPrimitive> call, Response<JsonPrimitive> response) {
-
-                    if (response.code() == 200) {
-                        BaseActivity.printLog("response-success : ", response.body().toString());
-                        mAlert.onShowProgressDialog(SetPasswordActivity.this, false);
-                        startActivity(new Intent(SetPasswordActivity.this, ForgotPasswordActivity.class));
-                        finish();
-                    } else if (response.code() == 401) {
-                        mAlert.onShowProgressDialog(SetPasswordActivity.this, false);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<JsonPrimitive> call, Throwable t) {
-                    Log.e("response-failure", call.toString());
-                    mAlert.onShowProgressDialog(SetPasswordActivity.this, false);
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

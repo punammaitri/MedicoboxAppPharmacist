@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -38,6 +39,7 @@ public class SellerTransactionActivity extends AppCompatActivity {
 
     private void init() {
         searchview_medicine.setFocusable(false);
+        searchview_medicine.setVisibility(View.GONE);
         //Change status bar color
         BaseActivity baseActivity = new BaseActivity();
         baseActivity.changeStatusBarColor(this);

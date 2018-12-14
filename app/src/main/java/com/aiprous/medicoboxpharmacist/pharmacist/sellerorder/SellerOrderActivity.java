@@ -1,3 +1,4 @@
+/*
 package com.aiprous.medicoboxpharmacist.pharmacist.sellerorder;
 
 import android.content.Context;
@@ -55,15 +56,10 @@ public class SellerOrderActivity extends AppCompatActivity {
         mlistModelsArray.add(new SellerOrderActivity.ListModel(R.drawable.ic_menu_manage, "12233232323"));
         mlistModelsArray.add(new SellerOrderActivity.ListModel(R.drawable.ic_menu_manage, "12233232323"));
 
-        //add static data into Sub List array list
-        mSubListModelsArray.add(new SubListModel(R.drawable.ic_menu_manage, "Horlicks Lite Badam Jar 450 gm"));
-        mSubListModelsArray.add(new SubListModel(R.drawable.ic_menu_manage, "Horlicks Lite Badam Jar 450 gm"));
-        mSubListModelsArray.add(new SubListModel(R.drawable.ic_menu_manage, "Horlicks Lite Badam Jar 450 gm"));
-
         layoutManager = new LinearLayoutManager(mContext);
         rc_seller_list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rc_seller_list.setHasFixedSize(true);
-        rc_seller_list.setAdapter(new SellerOrderListAdapter(mContext, mlistModelsArray, mSubListModelsArray));
+        //rc_seller_list.setAdapter(new SellerOrderListAdapter(mContext, mlistModelsArray));
     }
 
     @OnClick(R.id.rlayout_back_button)
@@ -124,3 +120,4 @@ public class SellerOrderActivity extends AppCompatActivity {
         }
     }
 }
+*/

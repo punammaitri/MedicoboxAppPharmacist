@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 
 import com.aiprous.medicoboxpharmacist.MainActivity;
 import com.aiprous.medicoboxpharmacist.R;
-import com.aiprous.medicoboxpharmacist.pharmacist.sellerorder.SellerOrderActivity;
+import com.aiprous.medicoboxpharmacist.pharmacist.sellerorder.SellerOrderTabActivity;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -115,7 +115,7 @@ public class DashboardFragment extends Fragment {
     @OnClick(R.id.linearLatestOrder)
     public void onViewClicked() {
 
-        startActivity(new Intent(getActivity(), SellerOrderActivity.class));
+        startActivity(new Intent(getActivity(), SellerOrderTabActivity.class));
     }
 
     public class SubListModel {

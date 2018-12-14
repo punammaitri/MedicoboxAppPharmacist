@@ -1,3 +1,4 @@
+/*
 package com.aiprous.medicoboxpharmacist.pharmacist.sellerorder;
 
 import android.app.Dialog;
@@ -63,3 +64,4 @@ public class SellerOrderSubListAdapter extends RecyclerView.Adapter<SellerOrderS
         }
     }
 }
+*/

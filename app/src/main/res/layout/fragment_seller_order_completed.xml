@@ -5,17 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_gray_bg"
-    android:orientation="vertical"
-    tools:context="com.aiprous.medicoboxpharmacist.instaorder.InstaProductDetailActivity">
+    android:orientation="vertical">
 
-    <include
-        android:id="@+id/rlayout_list_toolbar"
-        layout="@layout/custom_toolbar" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rlayout_list_toolbar"
         android:background="@color/color_gray_bg"
         android:orientation="vertical">
 

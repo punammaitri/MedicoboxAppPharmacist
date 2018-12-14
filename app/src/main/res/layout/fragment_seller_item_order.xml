@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_gray_bg"
-    android:orientation="vertical"
-    tools:context="com.aiprous.medicoboxpharmacist.instaorder.InstaProductDetailActivity">
+    android:orientation="vertical">
 
 
     <android.support.v4.widget.NestedScrollView
@@ -21,7 +20,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtOrderID"
+                android:id="@+id/txtOrderIDForItemOrder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/height_7"
@@ -34,11 +33,68 @@
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold" />
 
+
             <android.support.v7.widget.CardView
-                android:id="@+id/cardview_buyer_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtOrderID"
+                android:layout_marginLeft="@dimen/height_4"
+                android:layout_marginTop="@dimen/height_4"
+                android:layout_marginRight="@dimen/height_4"
+                android:layout_marginBottom="@dimen/height_4"
+                app:cardCornerRadius="@dimen/height_8"
+                app:cardElevation="@dimen/height_10">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/height_15">
+
+                    <RelativeLayout
+                        android:id="@+id/relDeliveryBoyList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/txtDeliveryBoy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_regular"
+                            android:text="Delivery Boy"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtDeliveryBoy"
+                            android:layout_marginTop="@dimen/height_5"
+                            android:fontFamily="@font/open_sans_regular"
+                            android:maxLines="2"
+                            android:text="Adam "
+                            android:textColor="@android:color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/img_right_arrow" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview_item_order_buyer_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtOrderIDForItemOrder"
                 android:layout_marginLeft="@dimen/height_4"
                 android:layout_marginTop="@dimen/height_4"
                 android:layout_marginRight="@dimen/height_4"
@@ -704,7 +760,7 @@
             </android.support.v7.widget.CardView>
 
             <Button
-                android:id="@+id/btnCreditMemo"
+                android:id="@+id/btnCreateInvoice"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_45"
                 android:layout_marginLeft="@dimen/height_30"
@@ -713,23 +769,55 @@
                 android:layout_marginBottom="@dimen/height_5"
                 android:background="@drawable/custom_btn_bg"
                 android:fontFamily="@font/open_sans_regular"
-                android:text="Credit memo"
+                android:text="Create invoice "
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/height_16"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/btnSendMail"
+                android:id="@+id/btnSendEmail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_45"
                 android:layout_marginLeft="@dimen/height_30"
-                android:layout_marginTop="@dimen/height_5"
+                android:layout_marginTop="@dimen/height_10"
                 android:layout_marginRight="@dimen/height_30"
-                android:layout_marginBottom="@dimen/height_20"
+                android:layout_marginBottom="@dimen/height_5"
                 android:background="@drawable/custom_btn_bg"
                 android:fontFamily="@font/open_sans_regular"
-                android:text="Send email"
+                android:text="send email"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/height_16"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnCancelOrder"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_45"
+                android:layout_marginLeft="@dimen/height_30"
+                android:layout_marginTop="@dimen/height_10"
+                android:layout_marginRight="@dimen/height_30"
+                android:layout_marginBottom="@dimen/height_5"
+                android:background="@drawable/custom_btn_bg"
+                android:fontFamily="@font/open_sans_regular"
+                android:text="Cancel Order"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/height_16"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnPrint"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_45"
+                android:layout_marginLeft="@dimen/height_30"
+                android:layout_marginTop="@dimen/height_10"
+                android:layout_marginRight="@dimen/height_30"
+                android:layout_marginBottom="@dimen/height_5"
+                android:background="@drawable/custom_btn_bg"
+                android:fontFamily="@font/open_sans_regular"
+                android:text="print"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/height_16"

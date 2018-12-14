@@ -1,43 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/color_gray_bg"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_gray_bg">
 
     <include
         android:id="@+id/rlayout_list_toolbar"
-        layout="@layout/custom_pharmacist_toolbar" />
-
+        layout="@layout/custom_default_toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rlayout_list_toolbar"
         android:layout_above="@+id/btn_filter"
+        android:layout_below="@+id/rlayout_list_toolbar"
         android:layout_marginLeft="@dimen/height_10"
         android:layout_marginRight="@dimen/height_10"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txt_products"
+        <android.support.v7.widget.SearchView
+            android:id="@+id/searchview_products"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rlayout_list_toolbar"
-            android:layout_marginTop="@dimen/height_5"
-            android:fontFamily="@font/open_sans_regular"
-            android:padding="@dimen/height_8"
-            android:text="PRODUCTS"
-            android:textAllCaps="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/colorblack"
-            android:textStyle="bold" />
-
+            android:layout_height="@dimen/height_40"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/height_15"
+            android:layout_toLeftOf="@+id/rlayout_cart"
+            android:layout_toRightOf="@+id/rlayout_plus"
+            android:background="@drawable/custom_btn_bg_white"
+            android:clickable="true"
+            android:queryBackground="@android:color/transparent"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
+            app:queryHint="Search Products" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rc_product_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_products"
             android:layout_marginTop="@dimen/height_10" />
 
     </LinearLayout>
@@ -46,6 +45,7 @@
         android:id="@+id/btn_filter"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_45"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="center"
         android:layout_marginLeft="@dimen/height_40"
         android:layout_marginTop="@dimen/height_10"
@@ -57,6 +57,5 @@
         android:textAllCaps="true"
         android:textColor="@android:color/white"
         android:textSize="@dimen/height_16"
-        android:textStyle="bold"
-        android:layout_alignParentBottom="true"/>
+        android:textStyle="bold" />
 </RelativeLayout>

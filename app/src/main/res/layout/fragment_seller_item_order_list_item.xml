@@ -41,11 +41,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/height_8"
                 android:fontFamily="@font/open_sans_regular"
                 android:text="@string/rs_symbol_ten"
-                android:textColor="@android:color/black"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/black" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -64,11 +65,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/height_8"
                 android:fontFamily="@font/open_sans_regular"
                 android:text="1"
-                android:textColor="@android:color/black"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/black" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -87,11 +89,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/height_8"
                 android:fontFamily="@font/open_sans_regular"
                 android:text="1"
-                android:textColor="@android:color/black"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/black" />
 
         </RelativeLayout>
 
@@ -111,11 +114,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/height_8"
                 android:fontFamily="@font/open_sans_regular"
                 android:text="1"
-                android:textColor="@android:color/black"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/black" />
         </RelativeLayout>
 
         <View
@@ -123,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="@dimen/height_10"
-            android:background="@color/colorlightlightGray"/>
+            android:background="@color/colorlightlightGray" />
 
 
     </LinearLayout>

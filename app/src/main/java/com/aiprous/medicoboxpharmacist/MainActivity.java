@@ -35,16 +35,15 @@ import com.aiprous.medicoboxpharmacist.model.NavItemClicked;
 import com.aiprous.medicoboxpharmacist.pharmacist.dashboard.DashboardFragment;
 import com.aiprous.medicoboxpharmacist.pharmacist.pharmacist_sidemenu.PharmacistSideMenuAdapter;
 import com.aiprous.medicoboxpharmacist.pharmacist.productlist.PharmacistProductListActivity;
-import com.aiprous.medicoboxpharmacist.pharmacist.sellerorder.SellerOrderActivity;
+import com.aiprous.medicoboxpharmacist.pharmacist.sellerorder.SellerOrderTabActivity;
 import com.aiprous.medicoboxpharmacist.pharmacist.sellertransaction.SellerTransactionActivity;
 import com.aiprous.medicoboxpharmacist.utils.BaseActivity;
+import com.cazaea.sweetalert.SweetAlertDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 
 public class MainActivity extends AppCompatActivity
         implements NavItemClicked {
@@ -184,7 +183,7 @@ public class MainActivity extends AppCompatActivity
                 addFragment();
                 return;
             } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.txt_orders))) {
-                startActivity(new Intent(mContext, SellerOrderActivity.class));
+                startActivity(new Intent(mContext, SellerOrderTabActivity.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return;
             } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_profile))) {
@@ -291,6 +290,7 @@ public class MainActivity extends AppCompatActivity
                 .setContentText(mContext.getResources().getString(R.string.are_you_exit))
                 .setConfirmText(mContext.getResources().getString(R.string.yes))
                 .setCancelText(mContext.getResources().getString(R.string.no))
+                .showCancelButton(true)
                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sDialog) {
@@ -298,15 +298,13 @@ public class MainActivity extends AppCompatActivity
                         finish();
                     }
                 })
-                .setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sDialog) {
                         sDialog.dismissWithAnimation();
                     }
                 })
                 .show();
-
-
     }
 
     private void logout() {
@@ -315,23 +313,25 @@ public class MainActivity extends AppCompatActivity
                 .setContentText(mContext.getResources().getString(R.string.are_you_sure_logout))
                 .setConfirmText(mContext.getResources().getString(R.string.yes))
                 .setCancelText(mContext.getResources().getString(R.string.no))
+                .showCancelButton(true)
                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sDialog) {
                         sDialog.dismissWithAnimation();
-                        startActivity(new Intent(mContext, LoginActivity.class));
                         MedicoboxApp.onSaveLoginDetail("", "", "", "", "");
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         finish();
                     }
                 })
-                .setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sDialog) {
                         sDialog.dismissWithAnimation();
                     }
                 })
                 .show();
-
     }
 
     @Override

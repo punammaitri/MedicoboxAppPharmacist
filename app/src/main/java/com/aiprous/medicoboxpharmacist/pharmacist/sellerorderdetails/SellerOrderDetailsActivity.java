@@ -1,3 +1,4 @@
+/*
 package com.aiprous.medicoboxpharmacist.pharmacist.sellerorderdetails;
 
 import android.os.Bundle;
@@ -15,7 +16,6 @@ import android.widget.TextView;
 import com.aiprous.medicoboxpharmacist.R;
 import com.aiprous.medicoboxpharmacist.pharmacist.sellerorderdetails.invoice.SellerInvoiceFragment;
 import com.aiprous.medicoboxpharmacist.pharmacist.sellerorderdetails.itemorder.SellerItemOrderFragment;
-import com.aiprous.medicoboxpharmacist.pharmacist.sellerorderdetails.shipment.SellerShipmentFragment;
 import com.aiprous.medicoboxpharmacist.utils.BaseActivity;
 
 import butterknife.BindView;
@@ -69,10 +69,6 @@ public class SellerOrderDetailsActivity extends AppCompatActivity {
                     SellerInvoiceFragment sellerInvoiceFragment = new SellerInvoiceFragment();
                     return sellerInvoiceFragment;
 
-                case 2:
-                    SellerShipmentFragment sellerShipmentFragment = new SellerShipmentFragment();
-                    return sellerShipmentFragment;
-
                 default:
                     return null;
             }
@@ -80,7 +76,7 @@ public class SellerOrderDetailsActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
         @Override
@@ -90,8 +86,6 @@ public class SellerOrderDetailsActivity extends AppCompatActivity {
                     return "ITEMS ORDERED";
                 case 1:
                     return "INVOICE";
-                case 2:
-                    return "SHIPMENTS";
             }
             return null;
         }
@@ -113,4 +107,4 @@ public class SellerOrderDetailsActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-}
+}*/

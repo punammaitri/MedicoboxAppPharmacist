@@ -10,6 +10,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.aiprous.medicoboxpharmacist.R;
+import com.aiprous.medicoboxpharmacist.pharmacist.sellerorderdetails.SellerOrderDetailActivity;
 
 import java.util.ArrayList;
 
@@ -20,11 +21,11 @@ import butterknife.ButterKnife;
 public class SellerItemOrderAdapter extends RecyclerView.Adapter<SellerItemOrderAdapter.ViewHolder> {
 
 
-    private ArrayList<SellerItemOrderFragment.ListModel> mDataArrayList;
+    private ArrayList<SellerOrderDetailActivity.ListModel> mDataArrayList;
     private Context mContext;
     private PopupWindow window;
 
-    public SellerItemOrderAdapter(Context mContext, ArrayList<SellerItemOrderFragment.ListModel> mDataArrayList) {
+    public SellerItemOrderAdapter(Context mContext, ArrayList<SellerOrderDetailActivity.ListModel> mDataArrayList) {
         this.mContext = mContext;
         this.mDataArrayList = mDataArrayList;
     }

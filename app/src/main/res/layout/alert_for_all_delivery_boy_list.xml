@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardLayoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="@dimen/height_8"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgCancel"
+                android:layout_width="@dimen/height_20"
+                android:layout_height="@dimen/height_20"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/height_10"
+                android:background="@drawable/img_alert_cancel_button" />
+
+
+            <TextView
+                android:id="@+id/txtDeliveryBoy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Select Delivery Boy"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/black" />
+
+
+            <com.aiprous.medicoboxpharmacist.utils.SearchableSpinner
+                android:id="@+id/spinner_all_delivery_boylist"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/txtDeliveryBoy"
+                android:layout_marginLeft="@dimen/height_10"
+                android:layout_marginTop="@dimen/height_20"
+                android:layout_marginRight="@dimen/height_10"
+                android:scrollbars="none"
+                android:spinnerMode="dropdown"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/color_border" />
+
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_45"
+                android:layout_below="@+id/spinner_all_delivery_boylist"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/height_30"
+                android:layout_marginTop="@dimen/height_30"
+                android:layout_marginRight="@dimen/height_30"
+                android:layout_marginBottom="@dimen/height_15"
+                android:background="@drawable/custom_btn_bg"
+                android:fontFamily="@font/open_sans_regular"
+                android:paddingLeft="@dimen/height_40"
+                android:paddingRight="@dimen/height_40"
+                android:text="Submit"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/height_16"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
+

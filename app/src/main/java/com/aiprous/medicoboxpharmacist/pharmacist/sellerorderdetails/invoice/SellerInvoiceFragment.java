@@ -41,7 +41,7 @@ public class SellerInvoiceFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         rec_sellerInvoice.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         rec_sellerInvoice.setHasFixedSize(true);
-        rec_sellerInvoice.setAdapter(new SellerInvoiceAdapter(getActivity(), mlistModelsArray));
+        //rec_sellerInvoice.setAdapter(new SellerInvoiceAdapter(getActivity(), mlistModelsArray));
     }
 
     public class ListModel {

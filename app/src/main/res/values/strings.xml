@@ -7,7 +7,7 @@
 
 
     <string name="Rs">\u20B9</string>
-
+    <string name="txt_close">Close</string>
     <string name="txt_home">Home</string>
     <string name="txt_orders">Orders</string>
     <string name="txt_account">Account</string>
@@ -22,14 +22,14 @@
     <string name="rs_symbol_eight">\u20B98.00</string>
     <string name="rs_symbol_ten">\u20B910.00</string>
     <string name="rs_symbol_zero">\u20B90.00</string>
-
+    <string name="loading">Loading…</string>
     <string name="are_you_sure">Are you sure</string>
     <string name="are_you_exit">You want to exit?</string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
     <string name="are_you_sure_logout">You want to logout?</string>
     <string name="address"> Flat No 104, A wing, \nGreen Olive Apartments, \nHinjawadi \nPune-411057  \nMaharashtra \nIndia</string>
-
+    <string name="check_your_network">Please check your network connection.</string>
     <string name="facebook_app_id">2203896199881450</string>
     <string name="error_email">Please provide Email.</string>
 
@@ -42,4 +42,13 @@
     <string name="menu_notification">Notifications</string>
     <string name="menu_add_delivery_boy">Add Delivery Boy</string>
     <string name="menu_transactions">Transactions</string>
+
+    <string-array name="deliveryBoy">
+        <item>Abc</item>
+        <item>xyz</item>
+        <item>pqr</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

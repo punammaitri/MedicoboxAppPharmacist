@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aiprous.medicoboxpharmacist.R;
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -63,7 +64,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /* check email id is valid or not */
-    public boolean isValidEmailId(EditText editText) {
+    public static boolean isValidEmailId(EditText editText) {
         String text = editText.getText().toString().trim();
         if (!Pattern.matches(EMAIL_REGEX, text)) {
             editText.requestFocus();
@@ -73,13 +74,14 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+
     /* show toast message to user */
     public static void showToast(Context context, String message) {
         View inflatedView = View.inflate(context, R.layout.toast_layout, null);
         Toast myToast = new Toast(context);
         TextView textView = inflatedView.findViewById(R.id.textView);
         textView.setText(message);
-        myToast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, Constant.SUCCESS_CODE);
+        myToast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, APIConstant.SUCCESS_CODE);
         myToast.setDuration(Toast.LENGTH_SHORT);
         myToast.setView(inflatedView);
         myToast.show();
@@ -94,34 +96,18 @@ public class BaseActivity extends AppCompatActivity {
         String specialChars = "(.*[,~,!,@,#,$,^,&,*,(,),-,_,=,+,[,{,],},|,;,:,<,>,/,?].*$)";
 
         if (password.length() <= 7) {
-            edtPassword.setError("Password should be more than 7 characters.");
             valid = false;
         } else if (!password.matches(upperCaseChars)) {
-            edtPassword.setError("Password should contain atleast one upper case letter");
             valid = false;
         } else if (!password.matches(lowerCaseChars)) {
-            edtPassword.setError("Password should contain atleast one lower case letter");
             valid = false;
         } else if (!password.matches(numbers)) {
-            edtPassword.setError("Password should contain atleast one number.");
             valid = false;
         } else if (!password.matches(specialChars)) {
-            edtPassword.setError("Password should contain atleast one special character");
             valid = false;
         }
         return valid;
     }
-
-    /*Password Validate*/
-    public static boolean isValidPassword(final String password) {
-        Pattern pattern;
-        Matcher matcher;
-        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
-        pattern = Pattern.compile(PASSWORD_PATTERN);
-        matcher = pattern.matcher(password);
-        return matcher.matches();
-    }
-
     /*Change Status bar color*/
     public static void changeStatusBarColor(Activity mActivity) {
         //set status bar color
@@ -133,6 +119,12 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /*Change Status bar color*/
+    public static void firebaseAnalytics(String mActivityName) {
+        FirebaseCrash.logcat(Log.ERROR,mActivityName,"Firebase Crash Analytics");
+        Throwable exception = null;
+        FirebaseCrash.report(exception);
+    }
     //---Function to check network connection---//
     public static boolean isNetworkAvailable(@NonNull Context context) {
         try {
@@ -170,4 +162,3 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 }
-

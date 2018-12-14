@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.aiprous.medicoboxpharmacist.R;
+import com.aiprous.medicoboxpharmacist.pharmacist.sellerorderdetails.SellerOrderDetailActivity;
 
 import java.util.ArrayList;
 
@@ -19,10 +20,10 @@ import butterknife.ButterKnife;
 public class SellerInvoiceAdapter extends RecyclerView.Adapter<SellerInvoiceAdapter.ViewHolder> {
 
 
-    private ArrayList<SellerInvoiceFragment.ListModel> mDataArrayList;
+    private ArrayList<SellerOrderDetailActivity.InvoiceListModel> mDataArrayList;
     private Context mContext;
 
-    public SellerInvoiceAdapter(Context mContext, ArrayList<SellerInvoiceFragment.ListModel> mDataArrayList) {
+    public SellerInvoiceAdapter(Context mContext, ArrayList<SellerOrderDetailActivity.InvoiceListModel> mDataArrayList) {
         this.mContext = mContext;
         this.mDataArrayList = mDataArrayList;
     }
