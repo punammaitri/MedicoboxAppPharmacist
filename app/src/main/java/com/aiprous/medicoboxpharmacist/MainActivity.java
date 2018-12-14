@@ -31,6 +31,7 @@ import com.aiprous.medicoboxpharmacist.activity.ProfileActivity;
 import com.aiprous.medicoboxpharmacist.adapter.NavAdaptor;
 import com.aiprous.medicoboxpharmacist.application.MedicoboxApp;
 import com.aiprous.medicoboxpharmacist.deliveryboy.AddDeliveryBoyActivity;
+import com.aiprous.medicoboxpharmacist.deliveryboy.ListOfDeliveryBoyActivity;
 import com.aiprous.medicoboxpharmacist.model.NavItemClicked;
 import com.aiprous.medicoboxpharmacist.pharmacist.dashboard.DashboardFragment;
 import com.aiprous.medicoboxpharmacist.pharmacist.pharmacist_sidemenu.PharmacistSideMenuAdapter;
@@ -172,44 +173,48 @@ public class MainActivity extends AppCompatActivity
        /* if (!isNetworkAvailable(mContext)) {
             CustomProgressDialog.getInstance().showDialog(mContext, Constant.Network_Error, Constant.ERROR_TYPE);
             return;*/
-            if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_dashboard))) {
-                drawerLayout.closeDrawer(GravityCompat.START);
-                int fragCount = getSupportFragmentManager().getBackStackEntryCount();
-                if (fragCount > 0) {
-                    for (int i = 0; i < fragCount; i++) {
-                        getSupportFragmentManager().popBackStackImmediate();
-                    }
+        if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_dashboard))) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+            int fragCount = getSupportFragmentManager().getBackStackEntryCount();
+            if (fragCount > 0) {
+                for (int i = 0; i < fragCount; i++) {
+                    getSupportFragmentManager().popBackStackImmediate();
                 }
-                addFragment();
-                return;
-            } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.txt_orders))) {
-                startActivity(new Intent(mContext, SellerOrderTabActivity.class));
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return;
-            } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_profile))) {
-                startActivity(new Intent(mContext, ProfileActivity.class));
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return;
-            } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_products))) {
-                startActivity(new Intent(this, PharmacistProductListActivity.class));
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return;
-            } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_notification))) {
-                startActivity(new Intent(this, NotificationActivity.class));
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return;
-            } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_add_delivery_boy))) {
-                startActivity(new Intent(mContext, AddDeliveryBoyActivity.class));
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return;
-            } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_transactions))) {
-                startActivity(new Intent(mContext, SellerTransactionActivity.class));
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return;
-            } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.txt_logout))) {
-                logout();
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return;
+            }
+            addFragment();
+            return;
+        } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.txt_orders))) {
+            startActivity(new Intent(mContext, SellerOrderTabActivity.class));
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_profile))) {
+            startActivity(new Intent(mContext, ProfileActivity.class));
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_products))) {
+            startActivity(new Intent(this, PharmacistProductListActivity.class));
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_notification))) {
+            startActivity(new Intent(this, NotificationActivity.class));
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_add_delivery_boy))) {
+            startActivity(new Intent(mContext, AddDeliveryBoyActivity.class));
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_list_delivery_boy))) {
+            startActivity(new Intent(mContext, ListOfDeliveryBoyActivity.class));
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.menu_transactions))) {
+            startActivity(new Intent(mContext, SellerTransactionActivity.class));
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        } else if (name.equalsIgnoreCase(mContext.getResources().getString(R.string.txt_logout))) {
+            logout();
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
 
         }
     }
@@ -252,6 +257,7 @@ public class MainActivity extends AppCompatActivity
                 mContext.getResources().getString(R.string.menu_products),
                 mContext.getResources().getString(R.string.menu_notification),
                 mContext.getResources().getString(R.string.menu_add_delivery_boy),
+                mContext.getResources().getString(R.string.menu_list_delivery_boy),
                 mContext.getResources().getString(R.string.menu_transactions),
                 mContext.getResources().getString(R.string.txt_logout)};
 
@@ -261,6 +267,7 @@ public class MainActivity extends AppCompatActivity
                 R.drawable.user,
                 R.drawable.cart,
                 R.drawable.bell,
+                R.drawable.plusblue,
                 R.drawable.plusblue,
                 R.drawable.transaction,
                 R.drawable.logout,};
