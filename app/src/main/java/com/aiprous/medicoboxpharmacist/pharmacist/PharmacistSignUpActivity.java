@@ -76,7 +76,7 @@ public class PharmacistSignUpActivity extends AppCompatActivity {
 
     private void init() {
         mTitle.setText("Sign Up");
-        rlayout_cart.setVisibility(View.VISIBLE);
+        rlayout_cart.setVisibility(View.GONE);
 
         //Change status bar color
         BaseActivity baseActivity = new BaseActivity();

@@ -11,6 +11,8 @@ import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.aiprous.medicoboxpharmacist.R;
 import com.aiprous.medicoboxpharmacist.utils.BaseActivity;
@@ -22,8 +24,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SellerTransactionActivity extends AppCompatActivity {
-    @BindView(R.id.searchview_medicine)
-    SearchView searchview_medicine;
+
+    @BindView(R.id.txtTitle)
+    TextView mTitle;
+    @BindView(R.id.rlayout_cart)
+    RelativeLayout rlayout_cart;
+
     @BindView(R.id.rc_seller_transactions)
     RecyclerView rc_seller_transactions;
     private Context mcontext = this;
@@ -38,19 +44,12 @@ public class SellerTransactionActivity extends AppCompatActivity {
     }
 
     private void init() {
-        searchview_medicine.setFocusable(false);
-        searchview_medicine.setVisibility(View.GONE);
+        mTitle.setText("Transaction");
+        rlayout_cart.setVisibility(View.GONE);
+
         //Change status bar color
         BaseActivity baseActivity = new BaseActivity();
         baseActivity.changeStatusBarColor(this);
-
-        //set status bar color
-        Window window = this.getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-        }
 
         transactionArraylist.add(new SellerTransactionModel("TR18392832835", "28/09/2018", "200"));
         transactionArraylist.add(new SellerTransactionModel("TR18392832835", "28/09/2018", "200"));

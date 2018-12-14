@@ -56,7 +56,7 @@ public class PharmacistSideMenuAdapter extends RecyclerView.Adapter<PharmacistSi
             }
         });
 
-        if (position == 7) {
+        if (position == 8) {
             holder.viewForDivider.setVisibility(View.GONE);
         }
     }

@@ -6,7 +6,7 @@
 
     <include
         android:id="@+id/toolbar_seller_transactions"
-        layout="@layout/custom_pharmacist_toolbar" />
+        layout="@layout/custom_default_toolbar" />
 
 
     <LinearLayout

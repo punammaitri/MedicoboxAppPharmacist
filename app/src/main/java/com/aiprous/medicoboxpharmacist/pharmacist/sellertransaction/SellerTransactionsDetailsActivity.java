@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aiprous.medicoboxpharmacist.R;
@@ -16,8 +17,10 @@ import butterknife.OnClick;
 
 public class SellerTransactionsDetailsActivity extends AppCompatActivity {
 
-    @BindView(R.id.searchview_medicine)
-    SearchView searchview_medicine;
+    @BindView(R.id.txtTitle)
+    TextView mTitle;
+    @BindView(R.id.rlayout_cart)
+    RelativeLayout rlayout_cart;
     @BindView(R.id.tv_price)
     TextView tv_price;
     @BindView(R.id.tv_total_price)
@@ -41,8 +44,8 @@ public class SellerTransactionsDetailsActivity extends AppCompatActivity {
     }
 
     private void init() {
-        searchview_medicine.setFocusable(false);
-        searchview_medicine.setVisibility(View.GONE);
+        mTitle.setText("Transaction Detail");
+        rlayout_cart.setVisibility(View.GONE);
         //Change status bar color
         BaseActivity baseActivity = new BaseActivity();
         baseActivity.changeStatusBarColor(this);

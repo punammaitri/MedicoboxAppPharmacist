@@ -77,7 +77,7 @@ public class SellerOrderDetailActivity extends AppCompatActivity {
     private void init() {
 
         mTitle.setText("Order Details");
-        rlayout_cart.setVisibility(View.VISIBLE);
+        rlayout_cart.setVisibility(View.GONE);
         //Change status bar color
         BaseActivity baseActivity = new BaseActivity();
         baseActivity.changeStatusBarColor(this);

@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/layout_custom_toolbar"
-        layout="@layout/custom_pharmacist_toolbar" />
+        layout="@layout/custom_default_toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"

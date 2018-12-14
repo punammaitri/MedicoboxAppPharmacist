@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/toolbar_seller_transactions"
-        layout="@layout/custom_pharmacist_toolbar" />
+        layout="@layout/custom_default_toolbar" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"

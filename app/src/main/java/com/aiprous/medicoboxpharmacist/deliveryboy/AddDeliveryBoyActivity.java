@@ -48,7 +48,7 @@ public class AddDeliveryBoyActivity extends AppCompatActivity {
     private void init() {
 
         txtTitle.setText("Add Delivery Boy");
-        rlayout_cart.setVisibility(View.VISIBLE);
+        rlayout_cart.setVisibility(View.GONE);
 
         //Change status bar color
         BaseActivity baseActivity = new BaseActivity();
