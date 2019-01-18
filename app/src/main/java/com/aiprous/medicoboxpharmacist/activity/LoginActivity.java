@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aiprous.medicoboxpharmacist.MainActivity;
 import com.aiprous.medicoboxpharmacist.R;
@@ -19,12 +21,26 @@ import com.aiprous.medicoboxpharmacist.pharmacist.PharmacistSignUpActivity;
 import com.aiprous.medicoboxpharmacist.utils.APIConstant;
 import com.aiprous.medicoboxpharmacist.utils.BaseActivity;
 import com.aiprous.medicoboxpharmacist.utils.CustomProgressDialog;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.StringTokenizer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.aiprous.medicoboxpharmacist.utils.APIConstant.LOGIN;
 import static com.aiprous.medicoboxpharmacist.utils.BaseActivity.isNetworkAvailable;
+import static com.aiprous.medicoboxpharmacist.utils.BaseActivity.isValidEmailId;
+import static com.aiprous.medicoboxpharmacist.utils.BaseActivity.showToast;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -44,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     private String lEmail;
     private String lPass;
     private Context mContext = this;
+    private String getResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,33 +127,99 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.btn_signup)
     public void onViewClicked() {
 
-       /* lEmail = edtMobileEmail.getText().toString().trim();
+        lEmail = edtMobileEmail.getText().toString().trim();
         lPass = edtPassword.getText().toString().trim();
 
-        if (lEmail.length() > 0 && lPass.length() > 0) {
-            JsonObject jsonObject = new JsonObject();
-            //Add Json Object
-            jsonObject.addProperty("username", lEmail);
-            jsonObject.addProperty("password", lPass);
-            //call login API
-          AttemptLogin(jsonObject, lEmail, lPass);
-        } else if (lEmail.length() == 0) {
+        if (lEmail.length() == 0) {
             showToast(this, getResources().getString(R.string.error_email));
         } else if (lPass.length() == 0) {
             showToast(this, getResources().getString(R.string.error_pass));
-        }*/
-
-
-        if (!isNetworkAvailable(this)) {
-            CustomProgressDialog.getInstance().showDialog(mContext, mContext.getResources().getString(R.string.check_your_network), APIConstant.ERROR_TYPE);
         } else {
-            CustomProgressDialog.getInstance().showDialog(mContext, "", APIConstant.PROGRESS_TYPE);
-            //AttemptLogin(jsonObject);
+            if (edtMobileEmail.toString().matches("[a-zA-Z ]+")) {
+                if (!isValidEmailId(edtMobileEmail)) {
+                    showToast(this, "Please enter valid email id");
+                } else {
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("username", lEmail);
+                        jsonObject.put("password", lPass);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (!isNetworkAvailable(this)) {
+                        CustomProgressDialog.getInstance().showDialog(mContext, mContext.getResources().getString(R.string.check_your_network), APIConstant.ERROR_TYPE);
+                    } else {
+                        CustomProgressDialog.getInstance().showDialog(mContext, "", APIConstant.PROGRESS_TYPE);
+                        AttemptLogin(jsonObject);
+                    }
+                }
+            } else {
+                if (edtMobileEmail.length() <= 9) {
+                    showToast(this, "Mobile number must be  10 digit");
+                } else {
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("username", lEmail);
+                        jsonObject.put("password", lPass);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (!isNetworkAvailable(this)) {
+                        CustomProgressDialog.getInstance().showDialog(mContext, mContext.getResources().getString(R.string.check_your_network), APIConstant.ERROR_TYPE);
+                    } else {
+                        CustomProgressDialog.getInstance().showDialog(mContext, "", APIConstant.PROGRESS_TYPE);
+                        AttemptLogin(jsonObject);
+                    }
+                }
+            }
         }
+    }
 
-        CustomProgressDialog.getInstance().dismissDialog();
+    private void AttemptLogin(JSONObject jsonObject) {
+        AndroidNetworking.post(LOGIN)
+                .addJSONObjectBody(jsonObject) // posting json
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        try {
+                            getResponse = response.getString("response");
+                            if (!getResponse.contains("message")) {
+                                if (!isNetworkAvailable(LoginActivity.this)) {
+                                    CustomProgressDialog.getInstance().showDialog(mContext, mContext.getResources().getString(R.string.check_your_network), APIConstant.ERROR_TYPE);
+                                } else {
+                                    Toast.makeText(mContext, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class)
+                                            .putExtra("email", "" + lEmail));
+                                    // getUserInfo(getResponse);
+                                }
+                            } else {
+                                // for removing braces
+                                CustomProgressDialog.getInstance().dismissDialog();
+                                String afterRemoveBrace = getResponse.replace("{", "").replace("}", "");
+                                StringTokenizer getMessage = new StringTokenizer(afterRemoveBrace, ":");
+                                String msg = getMessage.nextToken();
+                                String error_msg = getMessage.nextToken();
+                                Toast.makeText(LoginActivity.this, "Check login credentials", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-        startActivity(new Intent(LoginActivity.this, MainActivity.class)
-                .putExtra("email", "" + lEmail));
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        CustomProgressDialog.getInstance().dismissDialog();
+                        Toast.makeText(LoginActivity.this, "Error loading data", Toast.LENGTH_SHORT).show();
+                        Log.e("Error", "onError errorCode : " + error.getErrorCode());
+                        Log.e("Error", "onError errorBody : " + error.getErrorBody());
+                        Log.e("Error", "onError errorDetail : " + error.getErrorDetail());
+                    }
+                });
     }
 }

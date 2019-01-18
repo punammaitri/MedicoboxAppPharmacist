@@ -68,7 +68,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_regular"
-                    android:hint="Contact number 1"
+                    android:hint="Mobile number "
                     android:imeOptions="actionNext"
                     android:inputType="number"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -240,7 +240,7 @@
                     android:fontFamily="@font/open_sans_regular"
                     android:hint="Pharamacist registration number"
                     android:imeOptions="actionNext"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </android.support.design.widget.TextInputLayout>
 
@@ -275,7 +275,7 @@
                 android:fontFamily="@font/open_sans_regular"
                 android:hint="Enter password"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             </android.support.design.widget.TextInputLayout>
@@ -293,7 +293,7 @@
                 android:fontFamily="@font/open_sans_regular"
                 android:hint="Confirm password"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             </android.support.design.widget.TextInputLayout>
@@ -310,7 +310,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_regular"
                     android:hint="Message"
-                    android:imeOptions="actionNext"
+                    android:imeOptions="actionDone"
                     android:inputType="text"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </android.support.design.widget.TextInputLayout>

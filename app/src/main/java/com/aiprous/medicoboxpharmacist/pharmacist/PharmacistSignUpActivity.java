@@ -1,9 +1,12 @@
 package com.aiprous.medicoboxpharmacist.pharmacist;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -11,10 +14,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aiprous.medicoboxpharmacist.R;
+import com.aiprous.medicoboxpharmacist.activity.LoginActivity;
+import com.aiprous.medicoboxpharmacist.activity.OTPActivity;
 import com.aiprous.medicoboxpharmacist.utils.APIConstant;
 import com.aiprous.medicoboxpharmacist.utils.BaseActivity;
 import com.aiprous.medicoboxpharmacist.utils.CustomProgressDialog;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,7 +32,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.aiprous.medicoboxpharmacist.utils.APIConstant.OTP_REGISTER;
+import static com.aiprous.medicoboxpharmacist.utils.APIConstant.REGISTER;
 import static com.aiprous.medicoboxpharmacist.utils.BaseActivity.isNetworkAvailable;
+import static com.aiprous.medicoboxpharmacist.utils.BaseActivity.isValidEmailId;
+import static com.aiprous.medicoboxpharmacist.utils.BaseActivity.passwordValidation;
 
 public class PharmacistSignUpActivity extends AppCompatActivity {
 
@@ -116,8 +130,8 @@ public class PharmacistSignUpActivity extends AppCompatActivity {
             edtContactNoFirst.setError("Please enter contact number");
         } else if (lContact_no_second.length() == 0) {
             edtAddressSecond.setError("Please enter contact number");
-        } else if (lEmail_id.length() == 0) {
-            edtEmailId.setError("Please enter email id");
+        } else if (!isValidEmailId(edtEmailId)) {
+            edtEmailId.setError("Invalid email address");
         } else if (lName_pharmacy.length() == 0) {
             edtNamePharmacy.setError("Enter name of pharmacy");
         } else if (lAddress_first.length() == 0) {
@@ -136,43 +150,137 @@ public class PharmacistSignUpActivity extends AppCompatActivity {
             edtPharmacistRegNo.setError("Please enter pharmacist registration number");
         } else if (lDurg.length() == 0) {
             edtDurg.setError("Please enter drug license number");
-        } else if (lPassword.length() == 0) {
-            edtPassword.setError("Enter password");
-        } else if (lConPassword.length() == 0) {
-            edtConfirmPassword.setError("Enter confirm password");
+        } else if (!passwordValidation(mContext, lPassword, edtPassword)) {
+            Toast.makeText(mContext, "Password should contains one uppercase,lowercase,special character,number & should be greater than 7 character .", Toast.LENGTH_SHORT).show();
+        } else if (!lPassword.equals(lConPassword)) {
+            Toast.makeText(mContext, "Password mismatch", Toast.LENGTH_SHORT).show();
         } else if (lmessage.length() == 0) {
             edtMessage.setError("Please enter message");
-        } else if (!lEmail_id.matches(emailPattern)) {
-            edtEmailId.setError("Please enter valid email id");
         } else {
+
+            JSONObject jsonObject = new JSONObject();
             try {
+                jsonObject.put("mobile", lContact_no_first);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            //Call otp registration api
+            if (!isNetworkAvailable(this)) {
+                CustomProgressDialog.getInstance().showDialog(mContext, mContext.getResources().getString(R.string.check_your_network), APIConstant.ERROR_TYPE);
+            } else {
+                CustomProgressDialog.getInstance().showDialog(mContext, "", APIConstant.PROGRESS_TYPE);
+                CallOTPRegisterAPI(jsonObject);
+            }
+
+             /*   //Add Json Object
+                JSONObject jsonObjectAttribute = new JSONObject();
+                jsonObjectAttribute.put("attributeCode", "mobile_number");
+                jsonObjectAttribute.put("value", lContact_no_first);
+                jsonObjectAttribute.put("attributeCode", "pharmacist_reg_no");
+                jsonObjectAttribute.put("value", lPharmacistRegNo);
+                jsonObjectAttribute.put("attributeCode", "drug_license_no");
+                jsonObjectAttribute.put("value", lDurg);
+
+                JSONArray jsonArrayAttribute = new JSONArray();
+                jsonArrayAttribute.put(jsonObjectAttribute);
+
                 JSONObject objCustomer = new JSONObject();
                 objCustomer.put("email", lEmail_id);
                 objCustomer.put("firstname", lFirst_name);
                 objCustomer.put("lastname", lLast_name);
                 objCustomer.put("storeId", 1);
+                objCustomer.put("customAttributes", jsonArrayAttribute);
 
-                //Add Json Object
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("customer", objCustomer);
-                jsonObject.put("password", lPassword);
-                jsonObject.put("mobile", lContact_no_first);
+                JSONObject jsonObjectReg = new JSONObject();
+                jsonObjectReg.put("customer", objCustomer);
+                jsonObjectReg.put("password", lPassword);*/
 
-                if (!isNetworkAvailable(this)) {
+              /*  if (!isNetworkAvailable(this)) {
                     CustomProgressDialog.getInstance().showDialog(mContext, mContext.getResources().getString(R.string.check_your_network), APIConstant.ERROR_TYPE);
                 } else {
                     CustomProgressDialog.getInstance().showDialog(mContext, "", APIConstant.PROGRESS_TYPE);
-                    //AttemptToRegister(jsonObject);
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+                    AttemptToRegister(jsonObjectReg);
+                }*/
         }
+    }
+
+    private void CallOTPRegisterAPI(JSONObject jsonObject) {
+        AndroidNetworking.post(OTP_REGISTER)
+                .addJSONObjectBody(jsonObject)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response.getString("response"));
+                            if (!jsonResponse.isNull("message")) {
+                                String errorMessage = jsonResponse.getString("message");
+                                Toast.makeText(mContext, "" + errorMessage, Toast.LENGTH_SHORT).show();
+                            } else {
+                                //Toast.makeText(mContext, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(PharmacistSignUpActivity.this, OTPActivity.class));
+                                finish();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        CustomProgressDialog.getInstance().dismissDialog();
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        CustomProgressDialog.getInstance().dismissDialog();
+                        Log.e("Error", "onError errorCode : " + error.getErrorCode());
+                        Log.e("Error", "onError errorBody : " + error.getErrorBody());
+                        Log.e("Error", "onError errorDetail : " + error.getErrorDetail());
+                    }
+                });
+
+    }
+
+    private void AttemptToRegister(JSONObject jsonObject) {
+        AndroidNetworking.post(REGISTER)
+                .addJSONObjectBody(jsonObject)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        //for registration response
+                        CustomProgressDialog.getInstance().dismissDialog();
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response.getString("response"));
+
+                            if (!jsonResponse.isNull("message")) {
+                                String errorMessage = jsonResponse.getString("message");
+                                Toast.makeText(mContext, "" + errorMessage, Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(mContext, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(PharmacistSignUpActivity.this, LoginActivity.class));
+                                finish();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        CustomProgressDialog.getInstance().dismissDialog();
+                        Log.e("Error", "onError errorCode : " + error.getErrorCode());
+                        Log.e("Error", "onError errorBody : " + error.getErrorBody());
+                        Log.e("Error", "onError errorDetail : " + error.getErrorDetail());
+                    }
+                });
     }
 
     @OnClick(R.id.rlayout_back_button)
     public void BackPressSDescription() {
-        finish();
+
     }
 }

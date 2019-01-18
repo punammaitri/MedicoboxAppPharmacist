@@ -32,7 +32,7 @@
     <string name="check_your_network">Please check your network connection.</string>
     <string name="facebook_app_id">2203896199881450</string>
     <string name="error_email">Please provide Email.</string>
-
+    <string name="error_pass">Please provide Password.</string>
 
     <!-- <side menu items of pharmacist>-->
     <string name="menu_dashboard">Dashboard</string>

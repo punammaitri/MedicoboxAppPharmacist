@@ -5,6 +5,7 @@ public class APIConstant {
 
     //API BASE URL
     public static String LOGIN = "http://user8.itsindev.com/medibox/API/login.php";
+    public static String OTP_REGISTER = "http://user8.itsindev.com/medibox/API/otp-register.php";
     public static String REGISTER = "http://user8.itsindev.com/medibox/API/register.php";
     public static String ISEMAILAVAILABLE = "http://user8.itsindev.com/medibox/index.php/rest/V1/customers/isEmailAvailable";
     public static String GETPRODUCT = "http://user8.itsindev.com/medibox/API/products.php";
