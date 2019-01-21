@@ -28,6 +28,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -37,6 +39,7 @@ import static com.aiprous.medicoboxpharmacist.utils.APIConstant.REGISTER;
 import static com.aiprous.medicoboxpharmacist.utils.BaseActivity.isNetworkAvailable;
 import static com.aiprous.medicoboxpharmacist.utils.BaseActivity.isValidEmailId;
 import static com.aiprous.medicoboxpharmacist.utils.BaseActivity.passwordValidation;
+
 
 public class PharmacistSignUpActivity extends AppCompatActivity {
 
@@ -79,6 +82,9 @@ public class PharmacistSignUpActivity extends AppCompatActivity {
     @BindView(R.id.edt_confirm_password)
     EditText edtConfirmPassword;
     private Context mContext = this;
+    ArrayList<String> mStreetArray = new ArrayList<String>();
+    private JSONArray jsonArray;
+    JSONArray jsonArrayAttribute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +118,7 @@ public class PharmacistSignUpActivity extends AppCompatActivity {
         String lAddress_second = edtAddressSecond.getText().toString();
         String lCity = edtCity.getText().toString().trim();
         String lState = edtState.getText().toString().trim();
+        String lPharmacistName= edtNamePharmacy.getText().toString().trim();
         String lCountry = edtCountry.getText().toString().trim();
         String lPincode = edtPincode.getText().toString().trim();
         String lPharmacistRegNo = edtPharmacistRegNo.getText().toString().trim();
@@ -173,35 +180,67 @@ public class PharmacistSignUpActivity extends AppCompatActivity {
                 CallOTPRegisterAPI(jsonObject);
             }
 
-             /*   //Add Json Object
-                JSONObject jsonObjectAttribute = new JSONObject();
-                jsonObjectAttribute.put("attributeCode", "mobile_number");
-                jsonObjectAttribute.put("value", lContact_no_first);
-                jsonObjectAttribute.put("attributeCode", "pharmacist_reg_no");
-                jsonObjectAttribute.put("value", lPharmacistRegNo);
-                jsonObjectAttribute.put("attributeCode", "drug_license_no");
-                jsonObjectAttribute.put("value", lDurg);
+            try {
 
-                JSONArray jsonArrayAttribute = new JSONArray();
-                jsonArrayAttribute.put(jsonObjectAttribute);
+                //*****************for street array******************//
+                mStreetArray.clear();
+                mStreetArray.add(lAddress_first);
+                mStreetArray.add(lAddress_second);
+                jsonArray = new JSONArray(mStreetArray);
 
+                //*****************for addresses  list******************//
+                JSONObject jsonAddress  = new JSONObject();
+                jsonAddress.put("city",lCity);
+                jsonAddress.put("company",lPharmacistName);
+                jsonAddress.put("country_id","IN");
+                jsonAddress.put("default_billing","1");
+                jsonAddress.put("default_shipping","1");
+                jsonAddress.put("fax","fax");
+                jsonAddress.put("firstname",lFirst_name);
+                jsonAddress.put("lastname",lLast_name);
+                jsonAddress.put("postcode",lPincode);
+                jsonAddress.put("regionId","553");
+                jsonAddress.put("street", jsonArray);
+                jsonAddress.put("telephone",lContact_no_first);
+                JSONArray jsonAddressArray= new JSONArray();
+                jsonAddressArray.put(jsonAddress);
+
+                //*****************for customAttributes arraylist******************//
+
+                JSONObject jsonObjectAttribute1 = new JSONObject();
+                JSONObject jsonObjectAttribute2 = new JSONObject();
+                JSONObject jsonObjectAttribute3 = new JSONObject();
+
+                jsonObjectAttribute1.put("attributeCode", "mobile_number");
+                jsonObjectAttribute1.put("value", lContact_no_first);
+
+                jsonObjectAttribute2.put("attributeCode", "pharmacist_reg_no");
+                jsonObjectAttribute2.put("value", lPharmacistRegNo);
+
+                jsonObjectAttribute3.put("attributeCode", "drug_license_no");
+                jsonObjectAttribute3.put("value", lDurg);
+
+                jsonArrayAttribute = new JSONArray();
+                jsonArrayAttribute.put(jsonObjectAttribute1);
+                jsonArrayAttribute.put(jsonObjectAttribute2);
+                jsonArrayAttribute.put(jsonObjectAttribute3);
+
+                //*****************for customer ******************//
                 JSONObject objCustomer = new JSONObject();
                 objCustomer.put("email", lEmail_id);
                 objCustomer.put("firstname", lFirst_name);
                 objCustomer.put("lastname", lLast_name);
-                objCustomer.put("storeId", 1);
+                objCustomer.put("store_id", 1);
+                objCustomer.put("addresses", jsonAddressArray);
                 objCustomer.put("customAttributes", jsonArrayAttribute);
 
                 JSONObject jsonObjectReg = new JSONObject();
                 jsonObjectReg.put("customer", objCustomer);
-                jsonObjectReg.put("password", lPassword);*/
-
-              /*  if (!isNetworkAvailable(this)) {
-                    CustomProgressDialog.getInstance().showDialog(mContext, mContext.getResources().getString(R.string.check_your_network), APIConstant.ERROR_TYPE);
-                } else {
-                    CustomProgressDialog.getInstance().showDialog(mContext, "", APIConstant.PROGRESS_TYPE);
-                    AttemptToRegister(jsonObjectReg);
-                }*/
+                jsonObjectReg.put("password", lPassword);
+                Log.e("data",""+jsonObjectReg.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
