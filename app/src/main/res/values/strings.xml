@@ -33,7 +33,7 @@
     <string name="facebook_app_id">2203896199881450</string>
     <string name="error_email">Please provide Email.</string>
     <string name="error_pass">Please provide Password.</string>
-
+    <string name="select_terms">Yes, I agree to Terms and Conditions</string>
     <!-- <side menu items of pharmacist>-->
     <string name="menu_dashboard">Dashboard</string>
     <string name="menu_orders">Orders</string>

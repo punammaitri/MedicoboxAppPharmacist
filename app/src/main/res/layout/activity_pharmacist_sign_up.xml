@@ -74,22 +74,6 @@
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/height_10"
-                app:hintTextAppearance="@style/TextLabel">
-
-                <EditText
-                    android:id="@+id/edt_contact_no_second"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:hint="Contact number 2"
-                    android:imeOptions="actionNext"
-                    android:inputType="number"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -119,113 +103,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_regular"
-                    android:hint="Name of pharmacy"
+                    android:hint="Shop name"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/height_10"
-                app:hintTextAppearance="@style/TextLabel">
-
-                <EditText
-                    android:id="@+id/edt_address_first"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:hint="Address line 1"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/height_10"
-                app:hintTextAppearance="@style/TextLabel">
-
-                <EditText
-                    android:id="@+id/edt_address_second"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:hint="Address line 2"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/height_10"
-                app:hintTextAppearance="@style/TextLabel">
-
-                <EditText
-                    android:id="@+id/edt_city"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:hint="City"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/height_10"
-                app:hintTextAppearance="@style/TextLabel">
-
-                <EditText
-                    android:id="@+id/edt_state"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:hint="State"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/height_10"
-                app:hintTextAppearance="@style/TextLabel">
-
-                <EditText
-                    android:id="@+id/edt_country"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:hint="Country"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/height_10"
-                app:hintTextAppearance="@style/TextLabel">
-
-                <EditText
-                    android:id="@+id/edt_pincode"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:hint="PinCode"
-                    android:imeOptions="actionNext"
-                    android:inputType="number"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -292,33 +175,26 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_regular"
                 android:hint="Confirm password"
-                android:imeOptions="actionNext"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/height_10"
-                app:hintTextAppearance="@style/TextLabel">
-
-                <EditText
-                    android:id="@+id/edt_message"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:hint="Message"
-                    android:imeOptions="actionDone"
-                    android:inputType="text"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </android.support.design.widget.TextInputLayout>
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:text="@string/select_terms"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/height_5"
+                android:layout_marginLeft="-5dp"
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/btn_registration"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_45"
+                android:layout_marginTop="@dimen/height_5"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/height_30"

@@ -7,24 +7,8 @@ public class APIConstant {
     public static String LOGIN = "http://user8.itsindev.com/medibox/API/login.php";
     public static String OTP_REGISTER = "http://user8.itsindev.com/medibox/API/otp-register.php";
     public static String REGISTER = "http://user8.itsindev.com/medibox/API/register.php";
-    public static String ISEMAILAVAILABLE = "http://user8.itsindev.com/medibox/index.php/rest/V1/customers/isEmailAvailable";
-    public static String GETPRODUCT = "http://user8.itsindev.com/medibox/API/products.php";
-    public static String GETCATEGORY = "http://user8.itsindev.com/medibox/API/categories.php";
-    public static String FEATUREDPRODUCT = "http://user8.itsindev.com/medibox/API/featured-products.php";
-    public static String CONFIRMKEY = "http://user8.itsindev.com/medibox/index.php/rest/V1/customers/me/activate";
-    public static String BANNERAPI = "http://user8.itsindev.com/medibox/API/home-banners.php";
+    public static String VERIFY_OTP = "http://user8.itsindev.com/medibox/API/verify-register-otp.php";
     public static String GETUSERINFO = "http://user8.itsindev.com/medibox/API/customer_self.php";
-    public static String UPDATEUSERINFO = "http://user8.itsindev.com/medibox/index.php/rest/V1/customers/me";
-    public static String GETCARTID = "http://user8.itsindev.com/medibox/index.php/rest/V1/carts/mine";
-    public static String ADDTOCART = "http://user8.itsindev.com/medibox/index.php/rest/V1/carts/mine/items";
-    public static String GETCARTITEMS = "http://user8.itsindev.com/medibox/API/get_cart_item.php";
-    //public static String GETCARTITEMS = "http://user8.itsindev.com/medibox/index.php/rest/V1/carts/mine";
-
-
-    public static String DELETECARTITEMS = "http://user8.itsindev.com/medibox/index.php/rest/V1/carts/mine/items/";
-    public static String EDITCARTITEM = "http://user8.itsindev.com/medibox/index.php/rest/V1/carts/mine/items/";
-  //  public static String SINGLEPRODUCT = "http://user8.itsindev.com/medibox/index.php/rest/V1/products/id/";
-    public static String SINGLEPRODUCT = "http://user8.itsindev.com/medibox/API/single_product.php?product_id=";
 
 
     //Response Status Code
