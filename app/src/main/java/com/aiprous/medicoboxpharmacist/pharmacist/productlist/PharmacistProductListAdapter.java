@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aiprous.medicoboxpharmacist.R;
+import com.aiprous.medicoboxpharmacist.model.ProductListModel;
 import com.aiprous.medicoboxpharmacist.pharmacist.sellertransaction.SellerTransactionActivity;
 import com.aiprous.medicoboxpharmacist.utils.SearchableSpinner;
 
@@ -24,10 +25,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PharmacistProductListAdapter extends RecyclerView.Adapter<PharmacistProductListAdapter.ViewHolder> {
-    private ArrayList<SellerTransactionActivity.SellerTransactionModel> mDataArrayList;
+    private ArrayList<ProductListModel> mDataArrayList;
     private Context mContext;
 
-    public PharmacistProductListAdapter(Context mContext, ArrayList<SellerTransactionActivity.SellerTransactionModel> mDataArrayList) {
+    public PharmacistProductListAdapter(Context mContext, ArrayList<ProductListModel> mDataArrayList) {
         this.mContext = mContext;
         this.mDataArrayList = mDataArrayList;
     }
@@ -44,6 +45,10 @@ public class PharmacistProductListAdapter extends RecyclerView.Adapter<Pharmacis
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         holder.tv_price.setText(mContext.getResources().getString(R.string.Rs) + "200.00");
+        holder.tv_medicine_name.setText(mDataArrayList.get(position).getSku());
+        holder.tv_status_confirmed.setText("Qty. Confirmed : " + mDataArrayList.get(position).getQty());
+        holder.tv_type.setText("Type: " + mDataArrayList.get(position).getTypeId());
+
 
         holder.img_edit.setOnClickListener(new View.OnClickListener() {
             @Override

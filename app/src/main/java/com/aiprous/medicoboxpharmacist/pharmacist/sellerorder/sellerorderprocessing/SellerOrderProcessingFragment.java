@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aiprous.medicoboxpharmacist.R;
+import com.aiprous.medicoboxpharmacist.designpattern.SingletonOrderStatus;
+import com.aiprous.medicoboxpharmacist.model.AllOrderModel;
 import com.aiprous.medicoboxpharmacist.pharmacist.sellerorder.sellerorderpending.SellerOrderPendingFragment;
 import com.aiprous.medicoboxpharmacist.pharmacist.sellerorder.sellerorderpending.SellerOrderPendingListAdapter;
 import com.aiprous.medicoboxpharmacist.utils.BaseActivity;
@@ -23,9 +25,11 @@ import butterknife.ButterKnife;
 public class SellerOrderProcessingFragment extends Fragment {
 
     RecyclerView rc_seller_list;
-    ArrayList<SellerOrderProcessingFragment.ListModel> mlistModelsArray = new ArrayList<>();
-    ArrayList<SellerOrderProcessingFragment.SubListModel> mSubListModelsArray = new ArrayList<>();
     RecyclerView.LayoutManager layoutManager;
+
+    SingletonOrderStatus lsingletonOrderData;
+    public ArrayList<AllOrderModel.Processing> data;
+    SellerOrderProcessingListAdapter mProcessingListAdapter;
 
 
     @Override
@@ -43,68 +47,16 @@ public class SellerOrderProcessingFragment extends Fragment {
         BaseActivity baseActivity = new BaseActivity();
         baseActivity.changeStatusBarColor(getActivity());
 
-        //add static data into List array list
-        mlistModelsArray.add(new SellerOrderProcessingFragment.ListModel(R.drawable.ic_menu_manage, "12233232323"));
-        mlistModelsArray.add(new SellerOrderProcessingFragment.ListModel(R.drawable.ic_menu_manage, "12233232323"));
-        mlistModelsArray.add(new SellerOrderProcessingFragment.ListModel(R.drawable.ic_menu_manage, "12233232323"));
-
-        layoutManager = new LinearLayoutManager(getActivity());
-        rc_seller_list.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        rc_seller_list.setHasFixedSize(true);
-        rc_seller_list.setAdapter(new SellerOrderProcessingListAdapter(getActivity(), mlistModelsArray));
-    }
-
-
-    public class ListModel {
-        int image;
-        String orderId;
-
-        public ListModel(int image, String orderId) {
-            this.image = image;
-            this.orderId = orderId;
-        }
-
-        public int getImage() {
-            return image;
-        }
-
-        public void setImage(int image) {
-            this.image = image;
-        }
-
-        public String getOrderId() {
-            return orderId;
-        }
-
-        public void setOrderId(String orderId) {
-            this.orderId = orderId;
-        }
-
-    }
-
-    public class SubListModel {
-        int image;
-        String product_name;
-
-        public SubListModel(int image, String product_name) {
-            this.image = image;
-            this.product_name = product_name;
-        }
-
-        public int getImage() {
-            return image;
-        }
-
-        public void setImage(int image) {
-            this.image = image;
-        }
-
-        public String getProduct_name() {
-            return product_name;
-        }
-
-        public void setProduct_name(String product_name) {
-            this.product_name = product_name;
+        rc_seller_list.setLayoutManager(new LinearLayoutManager(getActivity()));
+        lsingletonOrderData  =SingletonOrderStatus.getGsonInstance();
+        try {
+            if (!lsingletonOrderData.mProcessingArray.isEmpty()) {
+                data = lsingletonOrderData.mProcessingArray;
+                mProcessingListAdapter=new SellerOrderProcessingListAdapter(SellerOrderProcessingFragment.this, SingletonOrderStatus.getGsonInstance().mProcessingArray);
+                rc_seller_list.setAdapter(mProcessingListAdapter);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

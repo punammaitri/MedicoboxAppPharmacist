@@ -87,6 +87,7 @@
                 android:layout_weight="0.52"
                 android:fontFamily="@font/open_sans_regular"
                 android:maxLines="2"
+                android:id="@+id/txtUsername"
                 android:text="Shreya Saran"
                 android:textColor="@color/colorblack"
                 android:textSize="15sp" />
@@ -164,6 +165,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txtTotal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.52"

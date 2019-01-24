@@ -9,7 +9,10 @@ public class APIConstant {
     public static String REGISTER = "http://user8.itsindev.com/medibox/API/register.php";
     public static String VERIFY_OTP = "http://user8.itsindev.com/medibox/API/verify-register-otp.php";
     public static String GETUSERINFO = "http://user8.itsindev.com/medibox/API/customer_self.php";
-
+    public static String ADD_DELIVERY_BOY = "http://user8.itsindev.com/medibox/API/delivery-boy/add-new.php";
+    public static String DELIVERY_BOY_LISTING = "http://user8.itsindev.com/medibox/API/delivery-boy/listing.php";
+    public static String PRODUCT_LIST = "http://user8.itsindev.com/medibox/API/seller_products.php";
+    public static String ORDER = "http://user8.itsindev.com/medibox/API/seller-sales-orders.php";
 
     //Response Status Code
     public static final int SUCCESS_CODE = 200;

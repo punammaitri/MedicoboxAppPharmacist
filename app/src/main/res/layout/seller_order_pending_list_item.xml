@@ -82,6 +82,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txtUsername"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.52"
@@ -164,6 +165,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txtTotal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.52"

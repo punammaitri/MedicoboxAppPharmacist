@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aiprous.medicoboxpharmacist.R;
+import com.aiprous.medicoboxpharmacist.model.ListOfDeliveryBoyModel;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
@@ -22,10 +23,10 @@ import butterknife.ButterKnife;
 public class ListOfDeliveryBoyAdapter extends RecyclerView.Adapter<ListOfDeliveryBoyAdapter.ViewHolder> {
 
 
-    private ArrayList<ListOfDeliveryBoyActivity.ListModel> mDataArrayList;
+    private ArrayList<ListOfDeliveryBoyModel> mDataArrayList;
     private Context mContext;
 
-    public ListOfDeliveryBoyAdapter(Context mContext, ArrayList<ListOfDeliveryBoyActivity.ListModel> mDataArrayList) {
+    public ListOfDeliveryBoyAdapter(Context mContext, ArrayList<ListOfDeliveryBoyModel> mDataArrayList) {
         this.mContext = mContext;
         this.mDataArrayList = mDataArrayList;
     }
@@ -41,8 +42,8 @@ public class ListOfDeliveryBoyAdapter extends RecyclerView.Adapter<ListOfDeliver
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
-        holder.imgView.setImageResource(mDataArrayList.get(position).getImage());
-        holder.txtDeliveryBoyName.setText(mDataArrayList.get(position).getDeliveryBoyName());
+        holder.imgView.setImageResource(R.drawable.user);
+        holder.txtDeliveryBoyName.setText(mDataArrayList.get(position).getName());
 
         holder.llayoutListing.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +51,6 @@ public class ListOfDeliveryBoyAdapter extends RecyclerView.Adapter<ListOfDeliver
                 mContext.startActivity(new Intent(mContext, DeliveryBoyDetailsActivity.class));
             }
         });
-
     }
 
     @Override

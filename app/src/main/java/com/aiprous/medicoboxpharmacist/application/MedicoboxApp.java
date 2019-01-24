@@ -54,4 +54,15 @@ public class MedicoboxApp extends MultiDexApplication {
     public static String onGetEmail() {
         return mSharedPreferences.getString("EMAIL", "");
     }
+
+
+    public static void onSaveBearer(String bearer) {
+        SharedPreferences.Editor edt = mSharedPreferences.edit();
+        edt.putString("bearer", bearer);
+        edt.commit();
+    }
+
+    public static String onGetBearer() {
+        return mSharedPreferences.getString("bearer", "");
+    }
 }

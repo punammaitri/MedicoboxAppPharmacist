@@ -1,6 +1,5 @@
 package com.aiprous.medicoboxpharmacist.pharmacist.sellerorder.sellerorderpending;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +11,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.aiprous.medicoboxpharmacist.R;
+import com.aiprous.medicoboxpharmacist.model.AllOrderModel;
+import com.aiprous.medicoboxpharmacist.pharmacist.sellerorder.sellerorderprocessing.SellerOrderProcessingFragment;
 import com.aiprous.medicoboxpharmacist.pharmacist.sellerorderdetails.SellerOrderDetailActivity;
 
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ import butterknife.ButterKnife;
 
 public class SellerOrderPendingListAdapter extends RecyclerView.Adapter<SellerOrderPendingListAdapter.ViewHolder> {
 
-    private ArrayList<SellerOrderPendingFragment.ListModel> mDataArrayList;
-    private Context mContext;
+    private ArrayList<AllOrderModel.Pending> mDataArrayList;
+    private SellerOrderPendingFragment mContext;
     private PopupWindow window;
 
-    public SellerOrderPendingListAdapter(Context mContext, ArrayList<SellerOrderPendingFragment.ListModel> mDataArrayList) {
+    public SellerOrderPendingListAdapter(SellerOrderPendingFragment mContext, ArrayList<AllOrderModel.Pending> mDataArrayList) {
         this.mContext = mContext;
         this.mDataArrayList = mDataArrayList;
     }
@@ -43,12 +44,16 @@ public class SellerOrderPendingListAdapter extends RecyclerView.Adapter<SellerOr
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         //holder.imgProduct.setImageResource(mDataArrayList.get(position).getImage());
-        holder.txtOrderID.setText(mDataArrayList.get(position).getOrderId());
+        holder.txtOrderID.setText(mDataArrayList.get(position).getEntityId());
+        holder.txtUsername.setText(mDataArrayList.get(position).getCustomerFirstname() + " " + mDataArrayList.get(position).getCustomerLastname());
+        holder.btnProcessing.setText(mDataArrayList.get(position).getStatus());
+        holder.txtTotal.setText("\u20B9" + mDataArrayList.get(position).getGrandTotal());
+
 
         holder.btn_view_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext,SellerOrderDetailActivity.class));
+                mContext.startActivity(new Intent(mContext.getActivity(), SellerOrderDetailActivity.class));
             }
         });
     }
@@ -68,7 +73,10 @@ public class SellerOrderPendingListAdapter extends RecyclerView.Adapter<SellerOr
         Button btnProcessing;
         @BindView(R.id.btn_view_detail)
         Button btn_view_detail;
-
+        @BindView(R.id.txtUsername)
+        TextView txtUsername;
+        @BindView(R.id.txtTotal)
+        TextView txtTotal;
 
         ViewHolder(@NonNull View view) {
             super(view);

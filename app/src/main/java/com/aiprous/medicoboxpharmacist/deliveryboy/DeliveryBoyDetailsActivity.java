@@ -27,6 +27,7 @@ public class DeliveryBoyDetailsActivity extends FragmentActivity implements OnMa
     TextView txtTitle;
     @BindView(R.id.rlayout_cart)
     RelativeLayout rlayout_cart;
+
     private Context mContext = this;
 
     @Override

@@ -1,3 +1,4 @@
+/*
 package com.aiprous.medicoboxpharmacist.pharmacist.sellerorder;
 
 import android.content.Context;
@@ -77,3 +78,4 @@ public class SellerOrderListAdapter extends RecyclerView.Adapter<SellerOrderList
         }
     }
 }
+*/

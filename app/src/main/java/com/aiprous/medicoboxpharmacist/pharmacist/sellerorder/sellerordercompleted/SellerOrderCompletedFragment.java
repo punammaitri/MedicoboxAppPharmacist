@@ -1,7 +1,5 @@
 package com.aiprous.medicoboxpharmacist.pharmacist.sellerorder.sellerordercompleted;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aiprous.medicoboxpharmacist.R;
-import com.aiprous.medicoboxpharmacist.pharmacist.sellerorder.SellerOrderListAdapter;
-import com.aiprous.medicoboxpharmacist.pharmacist.sellerorder.sellerorderpending.SellerOrderPendingFragment;
+import com.aiprous.medicoboxpharmacist.designpattern.SingletonOrderStatus;
+import com.aiprous.medicoboxpharmacist.model.AllOrderModel;
 import com.aiprous.medicoboxpharmacist.utils.BaseActivity;
 
 import java.util.ArrayList;
@@ -22,9 +20,9 @@ import butterknife.ButterKnife;
 public class SellerOrderCompletedFragment extends Fragment {
 
     RecyclerView rc_seller_list;
-    ArrayList<SellerOrderCompletedFragment.ListModel> mlistModelsArray = new ArrayList<>();
-    ArrayList<SellerOrderCompletedFragment.SubListModel> mSubListModelsArray = new ArrayList<>();
-    RecyclerView.LayoutManager layoutManager;
+    SingletonOrderStatus lsingletonOrderData;
+    public ArrayList<AllOrderModel.Completed> data;
+    SellerOrderCompletedListAdapter mSellerCompletedListAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,15 +39,17 @@ public class SellerOrderCompletedFragment extends Fragment {
         BaseActivity baseActivity = new BaseActivity();
         baseActivity.changeStatusBarColor(getActivity());
 
-        //add static data into List array list
-        mlistModelsArray.add(new SellerOrderCompletedFragment.ListModel(R.drawable.ic_menu_manage, "12233232323"));
-        mlistModelsArray.add(new SellerOrderCompletedFragment.ListModel(R.drawable.ic_menu_manage, "12233232323"));
-        mlistModelsArray.add(new SellerOrderCompletedFragment.ListModel(R.drawable.ic_menu_manage, "12233232323"));
-
-        layoutManager = new LinearLayoutManager(getActivity());
-        rc_seller_list.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        rc_seller_list.setHasFixedSize(true);
-        rc_seller_list.setAdapter(new SellerOrderCompletedListAdapter(getActivity(), mlistModelsArray));
+        rc_seller_list.setLayoutManager(new LinearLayoutManager(getActivity()));
+        lsingletonOrderData  =SingletonOrderStatus.getGsonInstance();
+        try {
+            if (!lsingletonOrderData.mCompletedArray.isEmpty()) {
+                data = lsingletonOrderData.mCompletedArray;
+                mSellerCompletedListAdapter=new SellerOrderCompletedListAdapter(SellerOrderCompletedFragment.this, SingletonOrderStatus.getGsonInstance().mCompletedArray);
+                rc_seller_list.setAdapter(mSellerCompletedListAdapter);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

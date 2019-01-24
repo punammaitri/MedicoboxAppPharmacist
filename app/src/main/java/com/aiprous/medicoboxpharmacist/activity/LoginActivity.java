@@ -142,36 +142,25 @@ public class LoginActivity extends AppCompatActivity {
         } else if (lPass.length() == 0) {
             showToast(this, getResources().getString(R.string.error_pass));
         } else {
-            if (edtMobileEmail.toString().matches("[a-zA-Z ]+")) {
+            if (!(edtMobileEmail.length() ==0)) {
                 if (!isValidEmailId(edtMobileEmail)) {
                     showToast(this, "Please enter valid email id");
                 } else {
                     JSONObject jsonObject = new JSONObject();
                     try {
-                        jsonObject.put("username", lEmail);
-                        jsonObject.put("password", lPass);
+                        jsonObject.put("username", "peters@mitash.com");
+                        jsonObject.put("password", "Peter.s@888");
+                        Log.e("data",""+jsonObject);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-                    if (!isNetworkAvailable(this)) {
-                        CustomProgressDialog.getInstance().showDialog(mContext, mContext.getResources().getString(R.string.check_your_network), APIConstant.ERROR_TYPE);
-                    } else {
-                        CustomProgressDialog.getInstance().showDialog(mContext, "", APIConstant.PROGRESS_TYPE);
-                        AttemptLogin(jsonObject);
-                    }
-                }
-            } else {
-                if (edtMobileEmail.length() <= 9) {
-                    showToast(this, "Mobile number must be  10 digit");
-                } else {
-                    JSONObject jsonObject = new JSONObject();
-                    try {
+                    /*try {
                         jsonObject.put("username", lEmail);
                         jsonObject.put("password", lPass);
                     } catch (JSONException e) {
                         e.printStackTrace();
-                    }
+                    }*/
 
                     if (!isNetworkAvailable(this)) {
                         CustomProgressDialog.getInstance().showDialog(mContext, mContext.getResources().getString(R.string.check_your_network), APIConstant.ERROR_TYPE);
@@ -245,6 +234,8 @@ public class LoginActivity extends AppCompatActivity {
                             JsonObject responseObject = getAllResponse.get("response").getAsJsonObject();
                             String status = responseObject.get("status").getAsString();
                             if (status.equals("success")) {
+
+                                MedicoboxApp.onSaveBearer(bearerToken);
                                 JsonObject responseObjects = responseObject.get("data").getAsJsonObject();
                                 String getId = responseObjects.get("id").getAsString();
                                 String getGroupId = responseObjects.get("group_id").getAsString();

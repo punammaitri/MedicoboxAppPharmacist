@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +16,41 @@ import android.widget.LinearLayout;
 
 import com.aiprous.medicoboxpharmacist.MainActivity;
 import com.aiprous.medicoboxpharmacist.R;
+import com.aiprous.medicoboxpharmacist.application.MedicoboxApp;
+import com.aiprous.medicoboxpharmacist.deliveryboy.ListOfDeliveryBoyActivity;
+import com.aiprous.medicoboxpharmacist.deliveryboy.ListOfDeliveryBoyAdapter;
+import com.aiprous.medicoboxpharmacist.designpattern.SingletonOrderStatus;
+import com.aiprous.medicoboxpharmacist.model.AllOrderModel;
+import com.aiprous.medicoboxpharmacist.model.ListOfDeliveryBoyModel;
 import com.aiprous.medicoboxpharmacist.pharmacist.sellerorder.SellerOrderTabActivity;
+import com.aiprous.medicoboxpharmacist.utils.APIConstant;
+import com.aiprous.medicoboxpharmacist.utils.CustomProgressDialog;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.aiprous.medicoboxpharmacist.utils.APIConstant.Authorization;
+import static com.aiprous.medicoboxpharmacist.utils.APIConstant.BEARER;
+import static com.aiprous.medicoboxpharmacist.utils.APIConstant.DELIVERY_BOY_LISTING;
+import static com.aiprous.medicoboxpharmacist.utils.APIConstant.ORDER;
 
 public class DashboardFragment extends Fragment {
 
@@ -41,6 +64,13 @@ public class DashboardFragment extends Fragment {
     @BindView(R.id.linearLatestOrder)
     LinearLayout linearLatestOrder;
     private MainActivity mainActivity;
+
+    public ArrayList<AllOrderModel.Canceled> mCanceledArray = new ArrayList<>();
+    public ArrayList<AllOrderModel.Completed> mCompletedArray = new ArrayList<>();
+    public ArrayList<AllOrderModel.Pending> mPendingArray = new ArrayList<>();
+    public ArrayList<AllOrderModel.Processing> mProcessingArray = new ArrayList<>();
+
+    SingletonOrderStatus lsingletonOrderData = SingletonOrderStatus.getGsonInstance();
 
     private OnFragmentInteractionListener mListener;
 
@@ -110,6 +140,134 @@ public class DashboardFragment extends Fragment {
         mChart.getLegend().setEnabled(false);
         mChart.invalidate();
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        GetAllOrder();
+    }
+
+    private void GetAllOrder() {
+
+        CustomProgressDialog.getInstance().showDialog(getActivity(), "", APIConstant.PROGRESS_TYPE);
+        AndroidNetworking.get(ORDER)
+                .addHeaders(Authorization, BEARER + MedicoboxApp.onGetBearer())
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+
+                        JsonObject getAllResponse = (JsonObject) new JsonParser().parse(response.toString());
+                        JsonObject responseObject = getAllResponse.get("response").getAsJsonObject();
+                        String status = responseObject.get("status").getAsString();
+
+                        JsonObject entries = responseObject.get("order_data").getAsJsonObject();
+                        JsonArray arrayProcessing = entries.get("processing").getAsJsonArray();
+                        JsonArray arrayPending = entries.get("pending").getAsJsonArray();
+                        JsonArray arrayCanceled = entries.get("canceled").getAsJsonArray();
+                        JsonArray arrayCompleted = entries.get("completed").getAsJsonArray();
+
+                        if (status.equals("success")) {
+
+                            if (!(arrayProcessing.size() == 0)) {
+                                mProcessingArray.clear();
+                                for (int i = 0; i < arrayProcessing.size(); i++) {
+                                    String entity_id = ((JsonObject) arrayProcessing.get(i)).get("entity_id").getAsString();
+                                    String customer_firstname = ((JsonObject) arrayProcessing.get(i)).get("customer_firstname").getAsString();
+                                    String customer_lastname = ((JsonObject) arrayProcessing.get(i)).get("customer_lastname").getAsString();
+                                    String mStatus = ((JsonObject) arrayProcessing.get(i)).get("status").getAsString();
+                                    String grand_total = ((JsonObject) arrayProcessing.get(i)).get("grand_total").getAsString();
+
+                                    AllOrderModel.Processing model = new AllOrderModel.Processing(customer_lastname, customer_firstname, mStatus, entity_id, grand_total);
+                                    model.setCustomerLastname(customer_lastname);
+                                    model.setCustomerFirstname(customer_firstname);
+                                    model.setStatus(mStatus);
+                                    model.setEntityId(entity_id);
+                                    model.setGrandTotal(grand_total);
+                                    mProcessingArray.add(model);
+                                }
+                                lsingletonOrderData.mProcessingArray = mProcessingArray;
+                            }
+
+                            if (!(arrayPending.size() == 0)) {
+                                mPendingArray.clear();
+                                for (int i = 0; i < arrayPending.size(); i++) {
+                                    String entity_id = ((JsonObject) arrayPending.get(i)).get("entity_id").getAsString();
+                                    String customer_firstname = ((JsonObject) arrayPending.get(i)).get("customer_firstname").getAsString();
+                                    String customer_lastname = ((JsonObject) arrayPending.get(i)).get("customer_lastname").getAsString();
+                                    String mStatus = ((JsonObject) arrayPending.get(i)).get("status").getAsString();
+                                    String grand_total = ((JsonObject) arrayPending.get(i)).get("grand_total").getAsString();
+
+                                    AllOrderModel.Pending model = new AllOrderModel.Pending(customer_lastname, customer_firstname, mStatus, entity_id, grand_total);
+                                    model.setCustomerLastname(customer_lastname);
+                                    model.setCustomerFirstname(customer_firstname);
+                                    model.setStatus(mStatus);
+                                    model.setEntityId(entity_id);
+                                    model.setGrandTotal(grand_total);
+                                    mPendingArray.add(model);
+                                }
+                                lsingletonOrderData.mPendingArray = mPendingArray;
+                            }
+
+                            if (!(arrayCompleted.size() == 0)) {
+                                mCompletedArray.clear();
+                                for (int i = 0; i < arrayCompleted.size(); i++) {
+                                    String entity_id = ((JsonObject) arrayCompleted.get(i)).get("entity_id").getAsString();
+                                    String customer_firstname = ((JsonObject) arrayCompleted.get(i)).get("customer_firstname").getAsString();
+                                    String customer_lastname = ((JsonObject) arrayCompleted.get(i)).get("customer_lastname").getAsString();
+                                    String mStatus = ((JsonObject) arrayCompleted.get(i)).get("status").getAsString();
+                                    String grand_total = ((JsonObject) arrayCompleted.get(i)).get("grand_total").getAsString();
+
+                                    AllOrderModel.Completed model = new AllOrderModel.Completed(customer_lastname, customer_firstname, mStatus, entity_id, grand_total);
+                                    model.setCustomerLastname(customer_lastname);
+                                    model.setCustomerFirstname(customer_firstname);
+                                    model.setStatus(mStatus);
+                                    model.setEntityId(entity_id);
+                                    model.setGrandTotal(grand_total);
+                                    mCompletedArray.add(model);
+                                }
+                                lsingletonOrderData.mCompletedArray = mCompletedArray;
+                            }
+
+                            if (!(arrayCanceled.size() == 0)) {
+                                mCanceledArray.clear();
+                                for (int i = 0; i < arrayCanceled.size(); i++) {
+                                    String entity_id = ((JsonObject) arrayCanceled.get(i)).get("entity_id").getAsString();
+                                    String customer_firstname = ((JsonObject) arrayCanceled.get(i)).get("customer_firstname").getAsString();
+                                    String customer_lastname = ((JsonObject) arrayCanceled.get(i)).get("customer_lastname").getAsString();
+                                    String mStatus = ((JsonObject) arrayCanceled.get(i)).get("status").getAsString();
+                                    String grand_total = ((JsonObject) arrayCanceled.get(i)).get("grand_total").getAsString();
+
+
+                                    AllOrderModel.Canceled model = new AllOrderModel.Canceled(customer_lastname, customer_firstname, mStatus, entity_id, grand_total);
+                                    model.setCustomerLastname(customer_lastname);
+                                    model.setCustomerFirstname(customer_firstname);
+                                    model.setStatus(mStatus);
+                                    model.setEntityId(entity_id);
+                                    model.setGrandTotal(grand_total);
+                                    mCanceledArray.add(model);
+                                }
+                                lsingletonOrderData.mCanceledArray = mCanceledArray;
+                            }
+
+                            CustomProgressDialog.getInstance().dismissDialog();
+                        } else {
+                            CustomProgressDialog.getInstance().dismissDialog();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        CustomProgressDialog.getInstance().dismissDialog();
+                        Log.e("Error", "onError errorCode : " + error.getErrorCode());
+                        Log.e("Error", "onError errorBody : " + error.getErrorBody());
+                        Log.e("Error", "onError errorDetail : " + error.getErrorDetail());
+                    }
+                });
     }
 
     @OnClick(R.id.linearLatestOrder)
@@ -192,4 +350,6 @@ public class DashboardFragment extends Fragment {
         xAxis.add("SUN");
         return xAxis;
     }
+
+
 }

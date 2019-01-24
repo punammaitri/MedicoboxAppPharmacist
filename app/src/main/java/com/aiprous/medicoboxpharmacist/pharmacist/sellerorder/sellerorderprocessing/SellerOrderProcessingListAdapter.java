@@ -12,6 +12,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.aiprous.medicoboxpharmacist.R;
+import com.aiprous.medicoboxpharmacist.model.AllOrderModel;
 import com.aiprous.medicoboxpharmacist.pharmacist.sellerorderdetails.SellerOrderDetailActivity;
 
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ import butterknife.ButterKnife;
 
 public class SellerOrderProcessingListAdapter extends RecyclerView.Adapter<SellerOrderProcessingListAdapter.ViewHolder> {
 
-    private ArrayList<SellerOrderProcessingFragment.ListModel> mDataArrayList;
-    private Context mContext;
+    private ArrayList<AllOrderModel.Processing> mDataArrayList;
+    private SellerOrderProcessingFragment mContext;
     private PopupWindow window;
 
-    public SellerOrderProcessingListAdapter(Context mContext, ArrayList<SellerOrderProcessingFragment.ListModel> mDataArrayList) {
+    public SellerOrderProcessingListAdapter(SellerOrderProcessingFragment mContext, ArrayList<AllOrderModel.Processing> mDataArrayList) {
         this.mContext = mContext;
         this.mDataArrayList = mDataArrayList;
     }
@@ -43,12 +44,15 @@ public class SellerOrderProcessingListAdapter extends RecyclerView.Adapter<Selle
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         //holder.imgProduct.setImageResource(mDataArrayList.get(position).getImage());
-        holder.txtOrderID.setText(mDataArrayList.get(position).getOrderId());
+        holder.txtOrderID.setText(mDataArrayList.get(position).getEntityId());
+        holder.txtUsername.setText(mDataArrayList.get(position).getCustomerFirstname() + " " + mDataArrayList.get(position).getCustomerLastname());
+        holder.btnProcessing.setText(mDataArrayList.get(position).getStatus());
+        holder.txtTotal.setText("\u20B9" + mDataArrayList.get(position).getGrandTotal());
 
         holder.btn_view_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext,SellerOrderDetailActivity.class));
+                mContext.startActivity(new Intent(mContext.getActivity(), SellerOrderDetailActivity.class));
             }
         });
     }
@@ -68,7 +72,10 @@ public class SellerOrderProcessingListAdapter extends RecyclerView.Adapter<Selle
         Button btnProcessing;
         @BindView(R.id.btn_view_detail)
         Button btn_view_detail;
-
+        @BindView(R.id.txtUsername)
+        TextView txtUsername;
+        @BindView(R.id.txtTotal)
+        TextView txtTotal;
 
         ViewHolder(@NonNull View view) {
             super(view);
