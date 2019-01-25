@@ -9,6 +9,7 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aiprous.medicoboxpharmacist.R;
 import com.aiprous.medicoboxpharmacist.application.MedicoboxApp;
@@ -24,6 +25,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -35,8 +37,9 @@ import butterknife.OnClick;
 import static com.aiprous.medicoboxpharmacist.utils.APIConstant.Authorization;
 import static com.aiprous.medicoboxpharmacist.utils.APIConstant.BEARER;
 import static com.aiprous.medicoboxpharmacist.utils.APIConstant.PRODUCT_LIST;
+import static com.aiprous.medicoboxpharmacist.utils.APIConstant.SELLER_PRODUCT_UPDATE;
 
-public class PharmacistProductListActivity extends AppCompatActivity {
+public class PharmacistProductListActivity extends AppCompatActivity implements PharmacistProductListAdapter.UpdateQuantity {
 
     @BindView(R.id.searchview_products)
     SearchView searchview_products;
@@ -102,7 +105,7 @@ public class PharmacistProductListActivity extends AppCompatActivity {
                                     String qty = ((JsonObject) entries.get(i)).get("qty").getAsString();
 
 
-                                    ProductListModel model = new ProductListModel(qty, required_options,has_options,sku,type_id,attribute_set_id,entity_id);
+                                    ProductListModel model = new ProductListModel(qty, required_options, has_options, sku, type_id, attribute_set_id, entity_id);
                                     model.setQty(qty);
                                     model.setRequiredOptions(required_options);
                                     model.setHasOptions(has_options);
@@ -115,9 +118,9 @@ public class PharmacistProductListActivity extends AppCompatActivity {
                             }
                             rc_product_list.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
                             rc_product_list.setHasFixedSize(true);
-                            rc_product_list.setAdapter(new PharmacistProductListAdapter(mContext, mProductListModels));
+                            rc_product_list.setAdapter(new PharmacistProductListAdapter(PharmacistProductListActivity.this, mProductListModels));
                             CustomProgressDialog.getInstance().dismissDialog();
-                        }else {
+                        } else {
                             CustomProgressDialog.getInstance().dismissDialog();
                         }
                     }
@@ -136,5 +139,45 @@ public class PharmacistProductListActivity extends AppCompatActivity {
     @OnClick(R.id.rlayout_back_button)
     public void BackPressSDescription() {
         finish();
+    }
+
+    @Override
+    public void updateQuantity(JSONObject jsonObject) {
+        CustomProgressDialog.getInstance().showDialog(mContext, "", APIConstant.PROGRESS_TYPE);
+        AndroidNetworking.post(SELLER_PRODUCT_UPDATE)
+                .addJSONObjectBody(jsonObject)
+                .addHeaders(Authorization, BEARER + MedicoboxApp.onGetBearer())
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        try {
+                            String status = response.getString("status");
+
+                            if (status.equals("success")){
+                                Toast.makeText(mContext, "" + status, Toast.LENGTH_SHORT).show();
+                            }else {
+                                String message = response.getString("message");
+                                Toast.makeText(mContext, "" + message, Toast.LENGTH_SHORT).show();
+                            }
+
+                            CustomProgressDialog.getInstance().dismissDialog();
+                            GetProductList();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        CustomProgressDialog.getInstance().dismissDialog();
+                        Log.e("Error", "onError errorCode : " + error.getErrorCode());
+                        Log.e("Error", "onError errorBody : " + error.getErrorBody());
+                        Log.e("Error", "onError errorDetail : " + error.getErrorDetail());
+                    }
+                });
     }
 }

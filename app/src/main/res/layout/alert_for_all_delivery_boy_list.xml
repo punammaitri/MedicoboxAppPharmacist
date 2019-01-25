@@ -40,26 +40,35 @@
                 android:textColor="@android:color/black" />
 
 
-            <com.aiprous.medicoboxpharmacist.utils.SearchableSpinner
-                android:id="@+id/spinner_all_delivery_boylist"
+            <RelativeLayout
+                android:id="@+id/relSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_below="@+id/txtDeliveryBoy"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/height_10"
-                android:layout_marginTop="@dimen/height_20"
+                android:layout_marginTop="@dimen/height_30"
                 android:layout_marginRight="@dimen/height_10"
-                android:scrollbars="none"
-                android:spinnerMode="dropdown"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@android:color/black"
-                android:textColorHint="@color/color_border" />
+                android:padding="@dimen/height_8"
+                android:layout_below="@+id/txtDeliveryBoy"
+                android:background="@drawable/custom_btn_bg_border_for_spinner">
+
+                <com.aiprous.medicoboxpharmacist.utils.SearchableSpinner
+                    android:id="@+id/spinner_all_delivery_boylist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:spinnerMode="dropdown"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/color_border" />
+
+            </RelativeLayout>
 
 
             <Button
                 android:id="@+id/btnSubmit"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_45"
-                android:layout_below="@+id/spinner_all_delivery_boylist"
+                android:layout_below="@+id/relSpinner"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="@dimen/height_30"
                 android:layout_marginTop="@dimen/height_30"

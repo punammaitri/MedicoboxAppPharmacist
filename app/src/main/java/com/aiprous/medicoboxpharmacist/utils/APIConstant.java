@@ -13,6 +13,10 @@ public class APIConstant {
     public static String DELIVERY_BOY_LISTING = "http://user8.itsindev.com/medibox/API/delivery-boy/listing.php";
     public static String PRODUCT_LIST = "http://user8.itsindev.com/medibox/API/seller_products.php";
     public static String ORDER = "http://user8.itsindev.com/medibox/API/seller-sales-orders.php";
+    public static String ASSIGN_DELIVERY_BOY = "http://user8.itsindev.com/medibox/API/assign_deliverboy.php";
+    public static String ORDER_INVOICE = "http://user8.itsindev.com/medibox/API/order-invoice.php";
+    public static String SELLER_PRODUCT_UPDATE = "http://user8.itsindev.com/medibox/API/seller_product_qty_update_api.php";
+    public static String GET_ORDER_INVOICE = "http://user8.itsindev.com/medibox/API/get-order-invoices.php";
 
     //Response Status Code
     public static final int SUCCESS_CODE = 200;

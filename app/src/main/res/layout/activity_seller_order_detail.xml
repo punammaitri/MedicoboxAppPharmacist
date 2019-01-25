@@ -918,7 +918,6 @@
                                 android:layout_marginLeft="@dimen/height_15"
                                 android:layout_marginTop="@dimen/height_6"
                                 android:fontFamily="@font/open_sans_regular"
-                                android:text="Invoice #000088883388"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:textColor="@android:color/black"
                                 android:textStyle="bold" />
@@ -937,12 +936,12 @@
 
 
                             <TextView
+                                android:id="@+id/txtDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/txtInvoiceId"
                                 android:layout_marginLeft="@dimen/height_15"
                                 android:fontFamily="@font/open_sans_regular"
-                                android:text="Date: 28/9/2018, 02:00pm"
                                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
@@ -960,11 +959,11 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txtOrder_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/height_15"
                             android:fontFamily="@font/open_sans_regular"
-                            android:text="Order #18526565"
                             android:textAppearance="?android:attr/textAppearanceSmall" />
 
                         <RelativeLayout

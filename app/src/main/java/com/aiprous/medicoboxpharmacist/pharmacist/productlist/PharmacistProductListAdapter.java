@@ -4,33 +4,42 @@ import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aiprous.medicoboxpharmacist.R;
 import com.aiprous.medicoboxpharmacist.model.ProductListModel;
-import com.aiprous.medicoboxpharmacist.pharmacist.sellertransaction.SellerTransactionActivity;
-import com.aiprous.medicoboxpharmacist.utils.SearchableSpinner;
+import com.aiprous.medicoboxpharmacist.pharmacist.sellerorderdetails.SellerOrderDetailActivity;
+import com.aiprous.medicoboxpharmacist.utils.APIConstant;
+import com.aiprous.medicoboxpharmacist.utils.CustomProgressDialog;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.aiprous.medicoboxpharmacist.utils.BaseActivity.isNetworkAvailable;
+
 public class PharmacistProductListAdapter extends RecyclerView.Adapter<PharmacistProductListAdapter.ViewHolder> {
     private ArrayList<ProductListModel> mDataArrayList;
-    private Context mContext;
+    private PharmacistProductListActivity mContext;
+    private UpdateQuantity mInterface;
 
-    public PharmacistProductListAdapter(Context mContext, ArrayList<ProductListModel> mDataArrayList) {
+
+    public PharmacistProductListAdapter(PharmacistProductListActivity mContext, ArrayList<ProductListModel> mDataArrayList) {
         this.mContext = mContext;
         this.mDataArrayList = mDataArrayList;
+        this.mInterface = mContext;
     }
 
     @NonNull
@@ -53,18 +62,20 @@ public class PharmacistProductListAdapter extends RecyclerView.Adapter<Pharmacis
         holder.img_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowProductListPopup();
+                ShowProductListPopup(mDataArrayList.get(position).getEntityId(), mDataArrayList.get(position).getSku());
             }
         });
     }
 
-    private void ShowProductListPopup() {
+    private void ShowProductListPopup(final String entityId, String sku) {
         final Dialog dialog = new Dialog(mContext);
         dialog.setContentView(R.layout.alert_for_product_search);
-        TextView txtProductList = dialog.findViewById(R.id.txtproductlist);
-        EditText edtSearch = dialog.findViewById(R.id.edittext_search_product);
+        TextView txtProductname = dialog.findViewById(R.id.txtProductname);
+        final EditText edtSearch = dialog.findViewById(R.id.edittext_search_product);
 
-        ((Button) dialog.findViewById(R.id.btnSubmit))
+        txtProductname.setText(sku);
+
+        ((Button) dialog.findViewById(R.id.btnCancel))
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -79,7 +90,36 @@ public class PharmacistProductListAdapter extends RecyclerView.Adapter<Pharmacis
                         dialog.dismiss();
                     }
                 });
+
+        ((Button) dialog.findViewById(R.id.btnUpdate))
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (!(edtSearch.getText().length() == 0)) {
+                            CallUpdateProductQuantity(entityId, edtSearch.getText().toString());
+                            dialog.dismiss();
+                        } else {
+                            Toast.makeText(mContext, "Please add quantity", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
         dialog.show();
+    }
+
+    private void CallUpdateProductQuantity(String productId, String quantity) {
+        if (!isNetworkAvailable(mContext)) {
+            CustomProgressDialog.getInstance().showDialog(mContext, mContext.getResources().getString(R.string.check_your_network), APIConstant.ERROR_TYPE);
+        } else {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("pro_id", productId);
+                jsonObject.put("pro_quantity", quantity);
+                mContext.updateQuantity(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -113,5 +153,9 @@ public class PharmacistProductListAdapter extends RecyclerView.Adapter<Pharmacis
             super(view);
             ButterKnife.bind(this, view);
         }
+    }
+
+    public interface UpdateQuantity {
+        public void updateQuantity(JSONObject jsonObject);
     }
 }

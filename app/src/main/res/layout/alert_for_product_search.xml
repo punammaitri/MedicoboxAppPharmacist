@@ -30,12 +30,11 @@
 
 
             <TextView
-                android:id="@+id/txtproductlist"
+                android:id="@+id/txtProductname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Search product list"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@android:color/black" />
 
@@ -44,34 +43,60 @@
                 android:id="@+id/edittext_search_product"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_below="@+id/txtproductlist"
+                android:layout_below="@+id/txtProductname"
                 android:layout_marginLeft="@dimen/height_10"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:inputType="number"
                 android:layout_marginTop="@dimen/height_20"
                 android:layout_marginRight="@dimen/height_10"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@android:color/black"
                 android:textColorHint="@color/color_border" />
 
-
-            <Button
-                android:id="@+id/btnSubmit"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/height_45"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/edittext_search_product"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="@dimen/height_30"
+                android:layout_marginLeft="@dimen/height_20"
                 android:layout_marginTop="@dimen/height_30"
-                android:layout_marginRight="@dimen/height_30"
+                android:layout_marginRight="@dimen/height_20"
                 android:layout_marginBottom="@dimen/height_15"
-                android:background="@drawable/custom_btn_bg"
-                android:fontFamily="@font/open_sans_regular"
-                android:paddingLeft="@dimen/height_40"
-                android:paddingRight="@dimen/height_40"
-                android:text="Submit"
-                android:textAllCaps="true"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/height_16"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/height_40"
+                    android:background="@drawable/custom_btn_bg"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:paddingLeft="@dimen/height_30"
+                    android:paddingRight="@dimen/height_30"
+                    android:layout_marginRight="@dimen/height_10"
+                    android:text="Cancel"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/height_16"
+                    android:textStyle="bold" />
+
+
+                <Button
+                    android:id="@+id/btnUpdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/height_40"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/custom_btn_bg"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:paddingLeft="@dimen/height_30"
+                    android:paddingRight="@dimen/height_30"
+                    android:layout_marginLeft="@dimen/height_10"
+                    android:text="Update"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/height_16"
+                    android:textStyle="bold" />
+            </RelativeLayout>
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

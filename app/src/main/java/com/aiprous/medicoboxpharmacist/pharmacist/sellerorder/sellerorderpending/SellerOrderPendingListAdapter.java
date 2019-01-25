@@ -41,7 +41,7 @@ public class SellerOrderPendingListAdapter extends RecyclerView.Adapter<SellerOr
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         //holder.imgProduct.setImageResource(mDataArrayList.get(position).getImage());
         holder.txtOrderID.setText(mDataArrayList.get(position).getEntityId());
@@ -53,7 +53,7 @@ public class SellerOrderPendingListAdapter extends RecyclerView.Adapter<SellerOr
         holder.btn_view_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext.getActivity(), SellerOrderDetailActivity.class));
+                mContext.startActivity(new Intent(mContext.getActivity(), SellerOrderDetailActivity.class).putExtra("id",mDataArrayList.get(position).getEntityId()));
             }
         });
     }
